@@ -17,11 +17,10 @@ return new class extends Migration
             $table->string('name_opd');
             $table->string('phone')->nullable();
             $table->string('email')->unique();
+            $table->string('alamat')->nullable();
             $table->string('role')->default('user_opd');
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
@@ -31,9 +30,13 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('role');
-    });
-}
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('email_verified_at');
+            $table->dropColumn('current_team_id');
+            $table->dropColumn('two_factor_secret');
+            $table->dropColumn('two_factor_recovery_codes');
+            $table->dropColumn('two_factor_confirmed_at');
+        });
+    }
 };

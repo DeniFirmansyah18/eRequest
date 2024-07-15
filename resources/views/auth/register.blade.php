@@ -10,8 +10,22 @@
             </div>
 
             <div>
+                <x-label for="name_opd">{{ __('Nama OPD') }} <span class="text-red-500">*</span></x-label>
+                <x-input id="name_opd" type="text" name="name_opd" :value="old('name_opd')" required autofocus autocomplete="name_opd" />
+            </div>
+
+            <div>
+                <x-label for="phone">{{ __('Telepon') }} <span class="text-red-500">*</span></x-label>
+                <x-input id="phone" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+            </div>
+            <div>
                 <x-label for="email">{{ __('Email Address') }} <span class="text-red-500">*</span></x-label>
                 <x-input id="email" type="email" name="email" :value="old('email')" required />
+            </div>
+
+            <div>
+                <x-label for="alamat">{{ __('Alamat') }} <span class="text-red-500">*</span></x-label>
+                <x-input id="alamat" type="alamat" name="alamat" :value="old('alamat')" required />
             </div>
 
             <div>
