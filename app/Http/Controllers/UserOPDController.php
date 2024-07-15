@@ -10,16 +10,19 @@ class UserOPDController extends Controller
 {
     public function dashboard()
     {
-        return view('pages.user-opd.dashboard-opd.dashboard-opd');
+        $role = Auth::user()->role;
+        return view('pages.user-opd.dashboard-opd.dashboard-opd', compact('role'));
     }
 
     public function daftarPengajuan()
     {
-        return view('pages.user-opd.daftar-pengajuan.daftar-pengajuan');
+        $role = Auth::user()->role;
+        return view('pages.user-opd.daftar-pengajuan.daftar-pengajuan', compact('role'));
     }
 
     public function tambahPengajuan()
     {
-        return view('pages.user-opd.tambah-pengajuan.tambah-pengajuan');
+        $role = Auth::user()->role;
+        return view('pages.user-opd.tambah-pengajuan.tambah-pengajuan', compact('role'));
     }
 }
