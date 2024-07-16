@@ -37,8 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/pengajuan/tindak-lanjut', [AdminController::class, 'tindakLanjut'])->name('admin.tindakLanjut');
         Route::get('/admin/riwayat', [AdminController::class, 'riwayat'])->name('admin.riwayat');
 
-        Route::get('/admin/pengajuan/detail-tindak-lanjut', [TindaklanjutController::class, 'detail'])->name('admin.detail.tindakLanjut');
-
+        Route::get('/admin/pengajuan/tindak-lanjut/detail-tindak-lanjut', [AdminController::class, 'detail'])->name('admin.detail.tindakLanjut');
     });
 
     Route::middleware(['auth', 'role:user_opd'])->group(function () {
