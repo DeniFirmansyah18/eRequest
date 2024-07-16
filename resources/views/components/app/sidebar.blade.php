@@ -91,42 +91,47 @@
                     </li>
                     @endif
 
-                    <!-- Dashboard User -->
-                    @if (($role ?? '') === 'user_opd')
-                    <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 {{ Request::routeIs('user_opd.dashboard') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
-                        <a class="block text-gray-800 dark:text-gray-100 truncate transition" href="{{ route('user_opd.dashboard') }}">
-                            <div class="flex items-center">
-                                <svg class="shrink-0 fill-current {{ Request::routeIs('user_opd.dashboard') ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500' }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                                    <path d="M5.936.278A7.983 7.983 0 0 1 8 0a8 8 0 1 1-8 8c0-.722.104-1.413.278-2.064a1 1 0 1 1 1.932.516A5.99 5.99 0 0 0 2 8a6 6 0 1 0 6-6c-.53 0-1.045.076-1.548.21A1 1 0 1 1 5.936.278Z" />
-                                    <path d="M6.068 7.482A2.003 2.003 0 0 0 8 10a2 2 0 1 0-.518-3.932L3.707 2.293a1 1 0 0 0-1.414 1.414l3.775 3.775Z" />
-                                </svg>
-                                <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Dashboard User</span>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- Daftar Pengajuan User-->
-                    <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] {{ Request::routeIs('user_opd.daftarPengajuan') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
-                        <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(1), ['user_opd.daftarPengajuan'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('user_opd.daftarPengajuan') }}">
-                            <div class="flex items-center">
-                                <svg class="shrink-0 fill-current {{ Request::routeIs('user_opd.daftarPengajuan') ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500' }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                    <path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z" /></svg>
-                                </svg>
-                                <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Daftar Pengajuan</span>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- Tambah Pengajuan User-->
-                    <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] {{ Request::routeIs('user_opd.tambahPengajuan') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
-                        <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(1), ['user_opd.tambahPengajuan'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('user_opd.tambahPengajuan') }}">
-                            <div class="flex items-center">
-                                <svg class="shrink-0 fill-current {{ Request::routeIs('user_opd.tambahPengajuan') ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500' }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                                    <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
-                                </svg>
-                                <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Tambah Pengajuan</span>
-                            </div>
-                        </a>
-                    </li>
-                    @endif
+                    <<<<<<< HEAD <!-- Dashboard User -->
+                        @if (($role ?? '') === 'user_opd')
+                        =======
+
+                        <!-- Dashboard User -->
+                        @if (($role ?? ) === 'user_opd')
+                        >>>>>>> 7d95905631c68801693b72e5d9d61e8dac914058
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 {{ Request::routeIs('user_opd.dashboard') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
+                            <a class="block text-gray-800 dark:text-gray-100 truncate transition" href="{{ route('user_opd.dashboard') }}">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current {{ Request::routeIs('user_opd.dashboard') ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500' }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path d="M5.936.278A7.983 7.983 0 0 1 8 0a8 8 0 1 1-8 8c0-.722.104-1.413.278-2.064a1 1 0 1 1 1.932.516A5.99 5.99 0 0 0 2 8a6 6 0 1 0 6-6c-.53 0-1.045.076-1.548.21A1 1 0 1 1 5.936.278Z" />
+                                        <path d="M6.068 7.482A2.003 2.003 0 0 0 8 10a2 2 0 1 0-.518-3.932L3.707 2.293a1 1 0 0 0-1.414 1.414l3.775 3.775Z" />
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Dashboard User</span>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- Daftar Pengajuan User-->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] {{ Request::routeIs('user_opd.daftarPengajuan') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
+                            <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(1), ['user_opd.daftarPengajuan'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('user_opd.daftarPengajuan') }}">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current {{ Request::routeIs('user_opd.daftarPengajuan') ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500' }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                                        <path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z" /></svg>
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Daftar Pengajuan</span>
+                                </div>
+                            </a>
+                        </li>
+                        <!-- Tambah Pengajuan User-->
+                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-[linear-gradient(135deg,var(--tw-gradient-stops))] {{ Request::routeIs('user_opd.tambahPengajuan') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
+                            <a class="block text-gray-800 dark:text-gray-100 truncate transition @if(!in_array(Request::segment(1), ['user_opd.tambahPengajuan'])){{ 'hover:text-gray-900 dark:hover:text-white' }}@endif" href="{{ route('user_opd.tambahPengajuan') }}">
+                                <div class="flex items-center">
+                                    <svg class="shrink-0 fill-current {{ Request::routeIs('user_opd.tambahPengajuan') ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500' }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                                        <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                                    </svg>
+                                    <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Tambah Pengajuan</span>
+                                </div>
+                            </a>
+                        </li>
+                        @endif
                 </ul>
             </div>
         </div>
