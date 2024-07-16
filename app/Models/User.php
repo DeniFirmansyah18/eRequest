@@ -53,4 +53,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    protected $table = 'users';
+
+    public function pengajuan()
+    {
+        return $this->hasMany(Pengajuan::class);
+    }
 }
