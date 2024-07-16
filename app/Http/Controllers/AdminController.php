@@ -26,6 +26,12 @@ class AdminController extends Controller
         return view('pages.admin.pengajuan.tindak-lanjut', compact('role'));
     }
 
+    public function detail()
+    {
+        $role = Auth::user()->role;
+        return view('pages.admin.pengajuan.detail-tindak-lanjut', compact('role'));
+    }
+
     public function riwayat()
     {
         $role = Auth::user()->role;
