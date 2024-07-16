@@ -8,26 +8,22 @@
     </x-slot>
 
     <x-slot name="form">
-        <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+            <div x-data="{ photoName: null, photoPreview: null }" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
-                <input type="file" id="photo" class="hidden"
-                            wire:model.live="photo"
-                            x-ref="photo"
-                            x-on:change="
-                                    photoName = $refs.photo.files[0].name;
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        photoPreview = e.target.result;
-                                    };
-                                    reader.readAsDataURL($refs.photo.files[0]);
-                            " />
+                <input type="file" class="hidden" wire:model="photo" x-ref="photo" x-on:change="
+                    photoName = $refs.photo.files[0].name;
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        photoPreview = e.target.result;
+                    };
+                    reader.readAsDataURL($refs.photo.files[0]);
+                " />
 
                 <x-label for="photo" value="{{ __('Photo') }}" />
 
                 <!-- Current Profile Photo -->
-                <div class="mt-2" x-show="! photoPreview">
+                <div class="mt-2" x-show="!photoPreview">
                     <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
@@ -52,31 +48,27 @@
             </div>
         @endif
 
-        <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Nama') }}" />
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model.live="state.name" required autocomplete="name" />
+            <x-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
-        <!-- Name OPD -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name_opd" value="{{ __('Nama OPD') }}" />
-            <x-input id="name_opd" type="text" class="mt-1 block w-full" wire:model.live="state.name_opd" required autocomplete="name" />
+            <x-input id="name_opd" type="text" class="mt-1 block w-full" wire:model.defer="state.name_opd" required autocomplete="name_opd" />
             <x-input-error for="name_opd" class="mt-2" />
         </div>
 
-        <!-- No Telepon -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="phone" value="{{ __('Nomer Telepon') }}" />
-            <x-input id="phone" type="number" class="mt-1 block w-full" wire:model.live="state.phone" required autocomplete="name" />
+            <x-input id="phone" type="number" class="mt-1 block w-full" wire:model.defer="state.phone" required autocomplete="phone" />
             <x-input-error for="phone" class="mt-2" />
         </div>
 
-        <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model.live="state.email" required autocomplete="username" />
+            <x-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" required autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())

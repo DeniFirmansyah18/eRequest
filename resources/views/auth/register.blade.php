@@ -25,6 +25,11 @@
             </div>
 
             <div>
+                <x-label for="alamat">{{ __('Alamat') }} <span class="text-red-500">*</span></x-label>
+                <x-input id="alamat" type="alamat" name="alamat" :value="old('alamat')" required />
+            </div>
+
+            <div>
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" type="password" name="password" required autocomplete="new-password" />
             </div>

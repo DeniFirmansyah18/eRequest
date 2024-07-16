@@ -1,3 +1,7 @@
+@php
+    $role = Auth::user()->role; // Asumsikan Anda sudah mengatur role di model User
+@endphp
+
 <div class="min-w-fit">
     <!-- Sidebar backdrop (mobile only) -->
     <div
@@ -43,8 +47,8 @@
                 </h3>
                 
                 <!--Dashboard Admin-->
+                @if ($role == 'admin')
                 <ul class="mt-3">
-                    @if (isset($role) && $role === 'admin')
                     <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 {{ Request::routeIs('admin.dashboard') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
                         <a class="block text-gray-800 dark:text-gray-100 truncate transition" href="{{ route('admin.dashboard') }}">
                             <div class="flex items-center">
@@ -124,9 +128,7 @@
                             </div>
                         </a>
                     </li>
-                    @endif
-
-                    @if (isset($role) && $role === 'user_opd')
+                    @elseif ($role == 'user_opd')
                     <!-- Dashboard User -->
                     <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 {{ Request::routeIs('user_opd.dashboard') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
                             <a class="block text-gray-800 dark:text-gray-100 truncate transition" href="{{ route('user_opd.dashboard') }}">
