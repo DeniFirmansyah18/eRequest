@@ -11,13 +11,14 @@
 
             <div>
                 <x-label for="name_opd">{{ __('Nama OPD') }} <span class="text-red-500">*</span></x-label>
-                <x-input id="name_opd" type="text" name="name_opd" :value="old('name_opd')" required autofocus autocomplete="name_opd" />
+                <x-input id="name_opd" type="name_opd" name="name_opd" :value="old('name_opd')" required />
             </div>
 
             <div>
-                <x-label for="phone">{{ __('Telepon') }} <span class="text-red-500">*</span></x-label>
-                <x-input id="phone" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+                <x-label for="phone">{{ __('Nomer Telepon') }} <span class="text-red-500">*</span></x-label>
+                <x-input id="phone" type="phone" name="phone" :value="old('phone')" required />
             </div>
+
             <div>
                 <x-label for="email">{{ __('Email Address') }} <span class="text-red-500">*</span></x-label>
                 <x-input id="email" type="email" name="email" :value="old('email')" required />

@@ -1,3 +1,7 @@
+@php
+    $role = Auth::user()->role; // Asumsikan Anda sudah mengatur role di model User
+@endphp
+
 <div class="min-w-fit">
     <!-- Sidebar backdrop (mobile only) -->
     <div class="fixed inset-0 bg-gray-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200" :class="sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'" aria-hidden="true" x-cloak></div>
@@ -32,8 +36,8 @@
                 </h3>
 
                 <!--Dashboard Admin-->
+                @if ($role == 'admin')
                 <ul class="mt-3">
-                    @if (($role ?? '') === 'admin')
                     <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 {{ Request::routeIs('admin.dashboard') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
                         <a class="block text-gray-800 dark:text-gray-100 truncate transition" href="{{ route('admin.dashboard') }}">
                             <div class="flex items-center">
@@ -89,16 +93,9 @@
                             </div>
                         </a>
                     </li>
-                    @endif
-
-                    <<<<<<< HEAD <!-- Dashboard User -->
-                        @if (($role ?? '') === 'user_opd')
-                        =======
-
-                        <!-- Dashboard User -->
-                        @if (($role ?? ) === 'user_opd')
-                        >>>>>>> 7d95905631c68801693b72e5d9d61e8dac914058
-                        <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 {{ Request::routeIs('user_opd.dashboard') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
+                    @elseif ($role == 'user_opd')
+                    <!-- Dashboard User -->
+                    <li class="pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 {{ Request::routeIs('user_opd.dashboard') ? 'bg-violet-500/[0.12] dark:bg-violet-500/[0.24]' : 'bg-[linear-gradient(135deg,var(--tw-gradient-stops))]' }}">
                             <a class="block text-gray-800 dark:text-gray-100 truncate transition" href="{{ route('user_opd.dashboard') }}">
                                 <div class="flex items-center">
                                     <svg class="shrink-0 fill-current {{ Request::routeIs('user_opd.dashboard') ? 'text-violet-500' : 'text-gray-400 dark:text-gray-500' }}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">

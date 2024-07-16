@@ -12,8 +12,6 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CampaignController;
-use App\Http\Controllers\DaftarpengajuanController;
-use App\Http\Controllers\TindaklanjutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserOPDController;
 
@@ -31,12 +29,7 @@ use App\Http\Controllers\UserOPDController;
 Route::redirect('/', 'login');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
-
-    //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    //Route::get('/pengajuan/daftar-pengajuan', [DaftarpengajuanController::class, 'index'])->name('daftar-pengajuan');
-    ///Route::get('/pengajuan/tindak-lanjut', [TindaklanjutController::class, 'index'])->name('tindak-lanjut');
-    //Route::get('/riwayat/riwayat', [RiwayatController::class, 'index'])->name('riwayat');
+    //Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
 
     Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
