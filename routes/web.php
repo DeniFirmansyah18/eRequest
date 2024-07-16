@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataFeedController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\CustomerController;
@@ -36,16 +37,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/pengajuan/tindak-lanjut', [AdminController::class, 'tindakLanjut'])->name('admin.tindakLanjut');
         Route::get('/admin/riwayat', [AdminController::class, 'riwayat'])->name('admin.riwayat');
     });
-    
+
     Route::middleware(['auth', 'role:user_opd'])->group(function () {
         Route::get('/user-opd/dashboard', [UserOPDController::class, 'dashboard'])->name('user_opd.dashboard');
         Route::get('/user-opd/daftar-pengajuan', [UserOPDController::class, 'daftarPengajuan'])->name('user_opd.daftarPengajuan');
         Route::get('/user-opd/tambah-pengajuan', [UserOPDController::class, 'tambahPengajuan'])->name('user_opd.tambahPengajuan');
     });
-
-    Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns');
-    Route::get('/community/users-tabs', [MemberController::class, 'indexTabs'])->name('users-tabs');
-    Route::get('/community/users-tiles', [MemberController::class, 'indexTiles'])->name('users-tiles');
     Route::get('/community/profile', function () {
         return view('pages.community.profile');
     })->name('profile');
@@ -67,9 +64,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/finance/cards', function () {
         return view('pages.finance.credit-cards');
     })->name('credit-cards');
-    Route::get('/finance/transactions', [TransactionController::class, 'index01'])->name('transactions');
-    Route::get('/finance/transaction-details', [TransactionController::class, 'index02'])->name('transaction-details');
-    Route::get('/job/job-listing', [JobController::class, 'index'])->name('job-listing');
+
     Route::get('/job/job-post', function () {
         return view('pages.job.job-post');
     })->name('job-post');
@@ -178,7 +173,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/component/icons', function () {
         return view('pages.component.icons-page');
     })->name('icons-page');
-    Route::fallback(function() {
+    Route::fallback(function () {
         return view('pages.utility.404');
     });
 });
