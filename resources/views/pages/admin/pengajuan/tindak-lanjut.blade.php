@@ -31,7 +31,9 @@
                     <div class="text-gray-800 dark:text-gray-100">Pengajuan sistem informasi keuangan</div>
                     <div class="flex items-center">
                         <span class="text-green-600 dark:text-green-400 font-semibold">Diterima</span>
-                        <button class="ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</button>
+                        <!-- <button class="ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</button> -->
+                        <a href="{{ route('admin.detail.tindakLanjut') }}" class="button ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</a>
+
                     </div>
                 </li>
                 <li class="flex justify-between items-center border-t border-gray-300 dark:border-gray-700 py-2">

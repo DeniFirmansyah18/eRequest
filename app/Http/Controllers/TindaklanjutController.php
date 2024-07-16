@@ -10,4 +10,8 @@ class TindaklanjutController extends Controller
     {
         return view('pages/admin/pengajuan/tindak-lanjut');
     }
+    public function detail()
+    {
+        return view('pages/admin/pengajuan/detail-tindak-lanjut');
+    }
 }
