@@ -1,5 +1,5 @@
 # eRequest
-Cara menjalankan:
+    Cara menjalankan:
     1. git clone https://github.com/DeniFirmansyah18/eRequest.git
     2. cd eRequest
     3. npm install
@@ -10,11 +10,13 @@ Cara menjalankan:
     8. buka terminal baru didalam folder eRequest
     9. php artisan serve
 
-Login:
-    #admin
-    admin : admin@gmail.com
-    pass  : admin12345
+
     
-    #user
-    User : user@gmail.com
-    pass : user12345
+    Login:
+        #admin
+        admin : admin@gmail.com
+        pass  : admin12345#user
+        
+        #user
+        User : user@gmail.com
+        pass : user12345
