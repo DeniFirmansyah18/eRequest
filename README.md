@@ -15,7 +15,7 @@
     Login:
         #admin
         admin : admin@gmail.com
-        pass  : admin12345#user
+        pass  : admin12345
         
         #user
         User : user@gmail.com
