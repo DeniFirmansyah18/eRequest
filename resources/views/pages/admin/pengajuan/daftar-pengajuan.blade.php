@@ -17,46 +17,27 @@
         </div>
 
         <!-- Table -->
-        <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-lg rounded-sm border border-gray-200 dark:border-gray-700">
+        <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700">
             <table class="table-auto w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">OPD</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Jumlah Pengajuan</th>
+                        <th class="px-4 py-2 text-left text-base font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
+                        <th class="px-4 py-2 text-left text-base font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nama Aplikasi</th>
+                        <th class="px-4 py-2 text-left text-base font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                    @foreach($pengajuan as $index => $pengajuan)
                     <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">1</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">Dinas Tenaga Kerja</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">2</td>
+                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $index + 1 }}</td>
+                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $pengajuan->nama_aplikasi }}</td>
+                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">
+                            <span class="@if($pengajuan->status == 'Disetujui') text-green-500 @elseif($pengajuan->status == 'Ditolak') text-red-500 @else text-gray-500 @endif">
+                                {{ $pengajuan->status }}
+                            </span>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">2</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">Dinas Kesehatan</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">2</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">3</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">Dinas Pendidikan</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">3</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">4</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">Dinas Pemberdayaan Masyarakat dan Desa</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">2</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">5</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">Dinas Pekerjaan Umum dan Penataan Ruang</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">2</td>
-                    </tr>
-                    <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">6</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">Dinas Perindustrian dan Perdagangan</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">2</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

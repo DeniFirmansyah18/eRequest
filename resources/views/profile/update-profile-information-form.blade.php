@@ -87,6 +87,12 @@
                 @endif
             @endif
         </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="alamat" value="{{ __('Alamat') }}" />
+            <x-input id="alamat" type="text" class="mt-1 block w-full" wire:model.defer="state.alamat" required autocomplete="alamat" />
+            <x-input-error for="alamat" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">

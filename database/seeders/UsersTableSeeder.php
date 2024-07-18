@@ -18,11 +18,11 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'John Doe',
-                'name_opd' => 'OPD A',
+                'name' => 'ADMIN',
+                'name_opd' => 'DISKOMINFO',
                 'phone' => '1234567890',
                 'email' => 'admin@gmail.com',
-                'alamat' => '123 Main St',
+                'alamat' => 'Mojokerto',
                 'role' => 'admin',
                 'password' => Hash::make('admin12345'),
                 'remember_token' => Str::random(10),
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Jane Doe',
-                'name_opd' => 'OPD B',
+                'name_opd' => 'Dinas Ketenagakerjaan',
                 'phone' => '0987654321',
                 'email' => 'user@gmail.com',
                 'alamat' => '456 Elm St',
@@ -44,8 +44,8 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'DINAS OPM',
-                'name_opd' => 'OPD B',
+                'name' => 'John Doe',
+                'name_opd' => 'Dinas Pertanian dan Perikanan',
                 'phone' => '0987654321',
                 'email' => 'user1@gmail.com',
                 'alamat' => '456 Elm St',

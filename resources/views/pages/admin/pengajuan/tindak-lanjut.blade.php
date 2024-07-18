@@ -16,35 +16,36 @@
 
         </div>
 
+        @foreach($pengajuan as $name_opd => $pengajuanGroup)
         <!-- Card -->
-        <div class="bg-gray-100 dark:bg-gray-800 border-2 border-gray-400 dark:border-none p-4 rounded-lg">
+        <div class="bg-gray-100 dark:bg-gray-800 border-2 border-gray-400 dark:border-none p-4 rounded-lg mb-6">
             <div class="flex justify-between items-center mb-4 bg-gray-200 dark:bg-gray-700 p-2 rounded">
                 <div>
-                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">Dinas Tenaga Kerja</h2>
-                    <p class="text-gray-600 dark:text-gray-400">Alamat: Jl.loremIpsum</p>
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ $name_opd }}</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Alamat: {{ $pengajuanGroup->first()->user->alamat }}</p>
                 </div>
             </div>
 
             <!-- List -->
             <ul>
+                @foreach($pengajuanGroup as $pengajuan)
                 <li class="flex justify-between items-center border-t border-gray-300 dark:border-gray-700 py-2">
-                    <div class="text-gray-800 dark:text-gray-100">Pengajuan sistem informasi keuangan</div>
+                    <div class="text-gray-800 dark:text-gray-100">{{ $pengajuan->nama_aplikasi }}</div>
                     <div class="flex items-center">
-                        <span class="text-green-600 dark:text-green-400 font-semibold">Diterima</span>
-                        <!-- <button class="ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</button> -->
-                        <a href="{{ route('admin.detail.tindakLanjut') }}" class="button ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</a>
 
+                        <!-- Menampilkan status pengajuan -->
+                        <span class="font-semibold {{ $pengajuan->status == 'Disetujui' ? 'text-green-600 dark:text-green-400' : ($pengajuan->status == 'Ditolak' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400') }}">
+                            {{ $pengajuan->status }}
+                        </span>
+
+
+                        <a href="{{ route('admin.detail.tindakLanjut', $pengajuan->id) }}" class="ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</a>
                     </div>
                 </li>
-                <li class="flex justify-between items-center border-t border-gray-300 dark:border-gray-700 py-2">
-                    <div class="text-gray-800 dark:text-gray-100">Pengajuan aplikasi surat menyurat</div>
-                    <div class="flex items-center">
-                        <span class="text-red-600 dark:text-red-400 font-semibold">Ditolak</span>
-                        <button class="ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</button>
-                    </div>
-                </li>
+                @endforeach
             </ul>
         </div>
+        @endforeach
 
     </div>
 </x-app-layout>

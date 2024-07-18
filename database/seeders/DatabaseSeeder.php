@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UsersTableSeeder::class,
-            PengajuanTableSeeder::class,
+            PengajuansTableSeeder::class,
         ]);
     }
 }

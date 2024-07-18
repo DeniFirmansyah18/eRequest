@@ -9,7 +9,14 @@ class Pengajuan extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengajuan';
+    protected $fillable = [
+        'nama_aplikasi',
+        'gambaran_umum',
+        'jenis_pengguna',
+        'fitur_fitur',
+        'konsep_file',
+        'user_id',
+    ];
 
     public function user()
     {

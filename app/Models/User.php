@@ -33,6 +33,11 @@ class User extends Authenticatable
         'alamat',
         'role',
         'password',
+        'nama_aplikasi',
+        'gambaran_umum',
+        'jenis_pengguna',
+        'fitur_fitur',
+        'konsep_file',
     ];
 
     /**

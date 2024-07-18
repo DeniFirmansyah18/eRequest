@@ -6,23 +6,8 @@
 
             <!-- Left: Title -->
             <div class="mb-4 sm:mb-0">
-                <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Detail</h1>
-                <!-- Flash Message -->
-            @if (session('disetujui'))
-            <div class="bg-green-500 text-white p-4 rounded mb-4" role="alert">
-                <span class="block sm:inline">{{ session('disetujui') }}</span>
-                <strong class="font-bold">Disetujui!</strong>
+                <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Riwayat</h1>
             </div>
-            @endif
-        
-            @if (session('ditolak'))
-            <div class="bg-red-500 text-white p-4 rounded mb-4" role="alert">
-                <span class="block sm:inline">{{ session('ditolak') }}</span>
-                <strong class="font-bold">Ditolak!</strong>
-            </div>
-            @endif
-            </div>
-            
 
             <!-- Right: Actions -->
             <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
@@ -88,72 +73,32 @@
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                         Fitur-fitur Aplikasi:
                     </label>
-                    <p class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600">{{ $pengajuan->fitur_fitur }}</p>
+                    <p class="w-full px-3 py-5 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600">{{ $pengajuan->fitur }}</p>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                         Detail Konsep Aplikasi:
                     </label>
-                    <div class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600">
-                        @if ($pengajuan->konsep_file)
-                            <p>Nama File: {{ basename($pengajuan->konsep_file) }}</p>
-                            <a href="{{ Storage::url($pengajuan->konsep_file) }}" class="text-blue-500 flex items-center mt-4" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-12 h-12 mr-2 mb-6">
-                                    <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 242.7-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7 288 32zM64 352c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-101.5 0-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352 64 352zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
-                                </svg>
-                                Unduh File Konsep
-                            </a>
-                        @else
-                            <p class="text-red-500">File konsep tidak tersedia</p>
-                        @endif
-                    </div>
+                    <input type="file" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600">
                 </div>
             </div>
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Catatan Verifikator</h2>
-            <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-2 mb-4">
+            <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Catatan Verifikator</h2>
                 <form action="{{ route('pengajuan.update', $pengajuan->id) }}" method="POST">
                     @csrf
                     <div class="mb-4">
-                        <textarea name="catatan_verifikator" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->catatan_verifikator }}</textarea>
+                        <p name="catatan_verifikator" class="w-full px-3 py-14 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->catatan_verifikator }}</p>
                     </div>
-
-                
-                </div>
-                <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Status Pengajuan</h2>
-                <div class="flex justify-left">
-                    
-                    <div class="bg-white dark:bg-gray-700 shadow-md rounded px-2 pt-6 pb-2 mb-4 max-w-48 w-full">
-                    <div class="flex space-x-2 mb-4">
-                        <!-- Form to approve pengajuan -->
-                        <form></form>
-                        <form action="{{ route('pengajuan.approve', $pengajuan->id) }}" method="POST" class="ml-3">
-                            @csrf
-                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
-                                Setuju
-                            </button>
-                        </form>
-                        <!-- Form to reject pengajuan -->
-                        <form action="{{ route('pengajuan.reject', $pengajuan->id) }}" method="POST" class="ml-2">
-                            @csrf
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
-                                Tolak
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                </div>
-                
 
 
                     <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Progres Aplikasi</h2>
-                    <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <textarea name="progress" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->progress }}</textarea>
+                    <p name="progress" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->progress }}</p>
                     <br>
                     <div class="mb-4">
                         <label class="inline-flex items-center">
                             <input type="checkbox" name="setuju" class="form-checkbox h-5 w-5 text-blue-600">
-                            <span class="ml-2 text-gray-700 dark:text-gray-300">Centang bila progress aplikasi sudah selesai</span>
+                            <span class="ml-2 text-gray-700 dark:text-gray-300">Centang bila aplikasi sudah selesai</span>
                         </label>
                     </div>
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
