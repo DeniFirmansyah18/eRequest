@@ -1,14 +1,15 @@
 # eRequest
     Cara menjalankan:
-    1. git clone https://github.com/DeniFirmansyah18/eRequest.git
-    2. cd eRequest
-    3. npm install
-    4. npm run dev
-    5. buka xampp
-    6. php artisan migrate
-    7. php artisan db:seed
-    8. buka terminal baru didalam folder eRequest
-    9. php artisan serve
+    1. Buka gitbash
+    2. git clone https://github.com/DeniFirmansyah18/eRequest.git
+    3. cd eRequest
+    4. npm install
+    5. npm run dev
+    6. buka xampp
+    7. buka terminal baru didalam folder eRequest
+    8. php artisan migrate
+    9. php artisan db:seed
+    10. php artisan serve
 
 
     
