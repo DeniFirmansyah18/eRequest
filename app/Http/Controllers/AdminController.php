@@ -14,22 +14,54 @@ class AdminController extends Controller
         return view('pages.admin.dashboard.dashboard', compact('role'));
     }
 
-    public function daftarPengajuan()
+    public function daftarPengajuan(Request $request)
     {
         $role = Auth::user()->role;
-        $pengajuan = Pengajuan::all(); // Ambil semua pengajuan
-        return view('pages.admin.pengajuan.daftar-pengajuan', compact('role', 'pengajuan'));
+        $searchTerm = $request->input('search', ''); // Default to an empty string if search term is not provided
+
+        // Gunakan metode paginate untuk mendapatkan instance LengthAwarePaginator dan filter berdasarkan user_id
+        $pengajuan = Pengajuan::where('status', '!=', 'Selesai')
+            ->when($searchTerm, function ($query, $searchTerm) {
+                return $query->where(function ($query) use ($searchTerm) {
+                    $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('status', 'like', '%' . $searchTerm . '%');
+                });
+            })->paginate(10); // Adjust pagination as needed
+        return view('pages.admin.pengajuan.daftar-pengajuan', compact('role', 'pengajuan', 'searchTerm'));
     }
 
-    public function tindakLanjut()
+    public function tindakLanjut(Request $request)
     {
         $role = Auth::user()->role;
-        $pengajuan = Pengajuan::whereHas('user', function ($query) {
+        $searchTerm = $request->input('search', ''); // Default to an empty string if search term is not provided
+
+        $pengajuanQuery = Pengajuan::whereHas('user', function ($query) {
             $query->where('role', '!=', 'admin');
-        })->get()->groupBy('user.name_opd');
+        })
+            ->where('status', '!=', 'Selesai')
+            ->when($searchTerm, function ($query) use ($searchTerm) {
+                return $query->where(function ($query) use ($searchTerm) {
+                    $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('status', 'like', '%' . $searchTerm . '%')
+                        ->orWhereHas('user', function ($query) use ($searchTerm) {
+                            $query->where('name_opd', 'like', '%' . $searchTerm . '%');
+                        });
+                });
+            });
 
-        return view('pages.admin.pengajuan.tindak-lanjut', compact('role', 'pengajuan'));
+        // Get the paginated result
+        $pengajuanPaginated = $pengajuanQuery->paginate(10);
+
+        // Group the results by user.name_opd
+        $pengajuanGroup = $pengajuanPaginated->groupBy('user.name_opd');
+
+        return view('pages.admin.pengajuan.tindak-lanjut', compact('role', 'pengajuanGroup', 'searchTerm', 'pengajuanPaginated'));
     }
+
+
+
+
+
 
     public function detail($id)
     {
@@ -38,12 +70,44 @@ class AdminController extends Controller
         return view('pages.admin.pengajuan.detail-tindak-lanjut', compact('role', 'pengajuan'));
     }
 
-    public function riwayat()
+    public function update(Request $request, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->catatan_verifikator = $request->input('catatan_verifikator');
+        $pengajuan->progress = $request->input('progress');
+
+        $pengajuan->save();
+
+        return redirect()->route('admin.detail.tindakLanjut', $id)->with('success', 'Data berhasil diupdate');
+    }
+
+
+    public function riwayat(Request $request)
     {
         $role = Auth::user()->role;
-        $pengajuan = Pengajuan::where('status', '!=', 'Pending')->get(); // Ambil pengajuan dengan status selain 'Pending'
-        return view('pages.admin.riwayat.riwayat', compact('role', 'pengajuan'));
+        $searchTerm = $request->input('search', ''); // Default to an empty string if search term is not provided
+
+        // Gunakan metode paginate untuk mendapatkan instance LengthAwarePaginator dan filter berdasarkan user_id
+        $pengajuan = Pengajuan::where('status', '=', 'Selesai')
+            ->when($searchTerm, function ($query, $searchTerm) {
+                return $query->where(function ($query) use ($searchTerm) {
+                    $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%');
+                });
+            })->paginate(10); // Adjust pagination as needed
+        return view('pages.admin.riwayat.riwayat', compact('role', 'pengajuan', 'searchTerm'));
     }
+
+    public function simpanKeRiwayat($id)
+    {
+        $pengajuan = Pengajuan::find($id);
+        if ($pengajuan) {
+            $pengajuan->status = 'Selesai'; // or any other status indicating it is moved to riwayat
+            $pengajuan->save();
+        }
+
+        return redirect()->route('admin.riwayat');
+    }
+
 
     public function detail_riwayat($id)
     {

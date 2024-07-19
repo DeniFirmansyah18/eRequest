@@ -15,13 +15,24 @@ class UserOPDController extends Controller
         return view('pages.user-opd.dashboard-opd.dashboard-opd', compact('role'));
     }
 
-    public function daftarPengajuan()
-{
-    $role = Auth::user()->role;
-    $userId = Auth::id(); // Mendapatkan user_id dari pengguna yang sedang login
-    $pengajuans = Pengajuan::where('user_id', $userId)->get(); // Menampilkan pengajuan berdasarkan user_id
-    return view('pages.user-opd.daftar-pengajuan.daftar-pengajuan', compact('role', 'pengajuans'));
-}
+    public function daftarPengajuan(Request $request)
+    {
+        $role = Auth::user()->role;
+        $userId = Auth::id(); // Mendapatkan user_id dari pengguna yang sedang login
+        $searchTerm = $request->input('search', ''); // Default to an empty string if search term is not provided
+
+        // Gunakan metode paginate untuk mendapatkan instance LengthAwarePaginator dan filter berdasarkan user_id
+        $pengajuans = Pengajuan::where('user_id', $userId)
+            ->when($searchTerm, function ($query, $searchTerm) {
+                return $query->where(function ($query) use ($searchTerm) {
+                    $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('status', 'like', '%' . $searchTerm . '%');
+                });
+            })->paginate(10); // Adjust pagination as needed
+
+        return view('pages.user-opd.daftar-pengajuan.daftar-pengajuan', compact('role', 'pengajuans', 'searchTerm'));
+    }
+
 
 
     public function detailPengajuan($id)

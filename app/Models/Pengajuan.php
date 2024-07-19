@@ -15,11 +15,25 @@ class Pengajuan extends Model
         'jenis_pengguna',
         'fitur_fitur',
         'konsep_file',
+        'status',
+        'progress',
+        'catatan_verifikator',
         'user_id',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeSearch($query, $searchTerm)
+    {
+        if ($searchTerm) {
+            return $query->where(function ($q) use ($searchTerm) {
+                $q->where('nama_aplikasi', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('status', 'like', '%' . $searchTerm . '%');
+            });
+        }
+        return $query;
     }
 }

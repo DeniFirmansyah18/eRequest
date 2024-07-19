@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '7d95905631c68801693b72e5d9d61e8dac914058',
+        'reference' => '3820de281803455cdfc7d92d82ae37fc8b360503',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -110,7 +110,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../fakerphp/faker',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'filp/whoops' => array(
             'pretty_version' => '2.15.4',
@@ -418,7 +418,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7d95905631c68801693b72e5d9d61e8dac914058',
+            'reference' => '3820de281803455cdfc7d92d82ae37fc8b360503',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

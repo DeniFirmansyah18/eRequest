@@ -9125,7 +9125,6 @@
     ],
     "dev": true,
     "dev-package-names": [
-        "fakerphp/faker",
         "filp/whoops",
         "hamcrest/hamcrest-php",
         "laravel/pint",

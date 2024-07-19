@@ -10,25 +10,29 @@
             </div>
 
             <!-- Right: Actions -->
-            <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-
+            <div class="flex justify-end space-x-2">
+                <!-- Search Form -->
+                <form action="{{ route('admin.tindakLanjut') }}" method="GET" class="flex items-center">
+                    <input type="text" name="search" placeholder="Cari pengajuan..." value="{{ old('search', $searchTerm) }}" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300">
+                    <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg">Cari</button>
+                </form>
             </div>
 
         </div>
 
-        @foreach($pengajuan as $name_opd => $pengajuanGroup)
+        @foreach($pengajuanGroup as $groupName => $pengajuans)
         <!-- Card -->
         <div class="bg-gray-100 dark:bg-gray-800 border-2 border-gray-400 dark:border-none p-4 rounded-lg mb-6">
             <div class="flex justify-between items-center mb-4 bg-gray-200 dark:bg-gray-700 p-2 rounded">
                 <div>
-                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ $name_opd }}</h2>
-                    <p class="text-gray-600 dark:text-gray-400">Alamat: {{ $pengajuanGroup->first()->user->alamat }}</p>
+                    <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ $groupName }}</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Alamat: {{ $pengajuans->first()->user->alamat }}</p>
                 </div>
             </div>
 
             <!-- List -->
             <ul>
-                @foreach($pengajuanGroup as $pengajuan)
+                @foreach($pengajuans as $pengajuan)
                 <li class="flex justify-between items-center border-t border-gray-300 dark:border-gray-700 py-2">
                     <div class="text-gray-800 dark:text-gray-100">{{ $pengajuan->nama_aplikasi }}</div>
                     <div class="flex items-center">
@@ -38,7 +42,6 @@
                             {{ $pengajuan->status }}
                         </span>
 
-
                         <a href="{{ route('admin.detail.tindakLanjut', $pengajuan->id) }}" class="ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</a>
                     </div>
                 </li>
@@ -47,5 +50,9 @@
         </div>
         @endforeach
 
+        <!-- Pagination links -->
+        <div class="mt-4">
+            {{ $pengajuanPaginated->appends(['search' => $searchTerm])->links() }}
+        </div>
     </div>
 </x-app-layout>

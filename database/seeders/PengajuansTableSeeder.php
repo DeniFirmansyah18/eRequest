@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class PengajuansTableSeeder extends Seeder
 {
@@ -14,99 +15,23 @@ class PengajuansTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pengajuans')->insert([
-            [
-                'nama_aplikasi' => 'Aplikasi Cuti',
-                'gambaran_umum' => 'Gambaran umum aplikasi A',
-                'jenis_pengguna' => 'Pengguna A',
-                'fitur_fitur' => 'CRUD',
-                'konsep_file' => ' ',
-                'catatan_verifikator' => 'Catatan verifikator A',
-                'status' => '',
-                'progress' => 'Sedang dikerjakan',
-                'user_id' => 2, // Asumsikan user_id 1 ada di tabel users
+        $faker = Faker::create();
+
+        // Mengisi tabel pengajuans dengan data palsu menggunakan Faker
+        for ($i = 0; $i < 50; $i++) {
+            DB::table('pengajuans')->insert([
+                'nama_aplikasi' => $faker->word,
+                'gambaran_umum' => $faker->sentence,
+                'jenis_pengguna' => $faker->randomElement(['Admin, user', 'Admin, User, Guest']),
+                'fitur_fitur' => $faker->words(3, true),
+                'konsep_file' => $faker->sentence,
+                'catatan_verifikator' => $faker->sentence,
+                'status' => $faker->randomElement(['Selesai', 'Disetujui', 'Ditolak', '']),
+                'progress' => $faker->randomElement(['Dalam Tahap Analisis', '', 'Dalam Tahap Testing']),
+                'user_id' => $faker->numberBetween(2, 12), // Sesuaikan dengan user_id yang ada di database Anda
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'nama_aplikasi' => 'Aplikasi Pegawai',
-                'gambaran_umum' => 'Gambaran umum aplikasi A',
-                'jenis_pengguna' => 'Pengguna A',
-                'fitur_fitur' => 'CRUD',
-                'konsep_file' => ' ',
-                'catatan_verifikator' => 'Catatan verifikator A',
-                'status' => '',
-                'progress' => 'Sedang dikerjakan',
-                'user_id' => 2, // Asumsikan user_id 1 ada di tabel users
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_aplikasi' => 'Aplikasi Keuangan',
-                'gambaran_umum' => 'Gambaran umum aplikasi A',
-                'jenis_pengguna' => 'Pengguna A',
-                'fitur_fitur' => 'CRUD',
-                'konsep_file' => ' ',
-                'catatan_verifikator' => 'Catatan verifikator A',
-                'status' => '',
-                'progress' => 'Sedang dikerjakan',
-                'user_id' => 2, // Asumsikan user_id 1 ada di tabel users
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_aplikasi' => 'Aplikasi Administrasi',
-                'gambaran_umum' => 'Gambaran umum aplikasi A',
-                'jenis_pengguna' => 'Pengguna A',
-                'fitur_fitur' => 'CRUD',
-                'konsep_file' => ' ',
-                'catatan_verifikator' => 'Catatan verifikator A',
-                'status' => '',
-                'progress' => 'Sedang dikerjakan',
-                'user_id' => 2, // Asumsikan user_id 1 ada di tabel users
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_aplikasi' => 'Aplikasi Monitoring',
-                'gambaran_umum' => 'Gambaran umum aplikasi A',
-                'jenis_pengguna' => 'Pengguna A',
-                'fitur_fitur' => 'CRUD',
-                'konsep_file' => ' ',
-                'catatan_verifikator' => 'Catatan verifikator A',
-                'status' => '',
-                'progress' => 'Sedang dikerjakan',
-                'user_id' => 3, // Asumsikan user_id 1 ada di tabel users
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_aplikasi' => 'Aplikasi Kepegawaian',
-                'gambaran_umum' => 'Gambaran umum aplikasi A',
-                'jenis_pengguna' => 'Pengguna A',
-                'fitur_fitur' => 'CRUD',
-                'konsep_file' => ' ',
-                'catatan_verifikator' => 'Catatan verifikator A',
-                'status' => '',
-                'progress' => 'Sedang dikerjakan',
-                'user_id' => 3, // Asumsikan user_id 1 ada di tabel users
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nama_aplikasi' => 'Aplikasi Keuangan',
-                'gambaran_umum' => 'Gambaran umum aplikasi A',
-                'jenis_pengguna' => 'Pengguna A',
-                'fitur_fitur' => 'CRUD',
-                'konsep_file' => ' ',
-                'catatan_verifikator' => 'Catatan verifikator A',
-                'status' => '',
-                'progress' => 'Sedang dikerjakan',
-                'user_id' => 3, // Asumsikan user_id 1 ada di tabel users
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            
-        ]);
+            ]);
+        }
     }
 }

@@ -10,8 +10,12 @@
             </div>
 
             <!-- Right: Actions -->
-            <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-                <!-- Add any buttons or actions here -->
+            <div class="flex justify-end space-x-2">
+                <!-- Search Form -->
+                <form action="{{ route('admin.daftarPengajuan') }}" method="GET" class="flex items-center">
+                    <input type="text" name="search" placeholder="Cari pengajuan..." value="{{ old('search', $searchTerm) }}" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300">
+                    <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg">Cari</button>
+                </form>
             </div>
 
         </div>
@@ -27,13 +31,13 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                    @foreach($pengajuan as $index => $pengajuan)
+                    @foreach($pengajuan as $index => $item)
                     <tr>
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $index + 1 }}</td>
-                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $pengajuan->nama_aplikasi }}</td>
+                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $item->nama_aplikasi }}</td>
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">
-                            <span class="@if($pengajuan->status == 'Disetujui') text-green-500 @elseif($pengajuan->status == 'Ditolak') text-red-500 @else text-gray-500 @endif">
-                                {{ $pengajuan->status }}
+                            <span class="@if($item->status == 'Disetujui') text-green-500 @elseif($item->status == 'Ditolak') text-red-500 @else text-gray-500 @endif">
+                                {{ $item->status }}
                             </span>
                         </td>
                     </tr>
@@ -41,6 +45,8 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="mt-4">
+            {{ $pengajuan->appends(['search' => $searchTerm])->links() }}
+        </div>
     </div>
 </x-app-layout>

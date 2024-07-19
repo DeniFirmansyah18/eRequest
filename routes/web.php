@@ -28,26 +28,26 @@ use App\Http\Controllers\UserOPDController;
 
 Route::redirect('/', 'login');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    //Route::get('/json-data-feed', [DataFeedController::class, 'getDataFeed'])->name('json_data_feed');
-
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['auth', 'role:admin'])->group(function () {
         // Route untuk pengajuan dengan role admin
         Route::post('/pengajuan/{id}/approve', [AdminController::class, 'approve'])->name('pengajuan.approve');
         Route::post('/pengajuan/{id}/reject', [AdminController::class, 'reject'])->name('pengajuan.reject');
-        Route::post('/pengajuan/{id}/update', [AdminController::class, 'update'])->name('pengajuan.update');
-    
+        Route::post('/admin/pengajuan/update/{id}', [AdminController::class, 'update'])->name('admin.pengajuan.update');
+        Route::post('/admin/simpan-ke-riwayat/{id}', [AdminController::class, 'simpanKeRiwayat'])->name('admin.simpanKeRiwayat');
+
+
         // Route admin dashboard
         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    
+
         // Route pengajuan daftar dan tindak lanjut
         Route::get('/admin/pengajuan/daftar-pengajuan', [AdminController::class, 'daftarPengajuan'])->name('admin.daftarPengajuan');
         Route::get('/admin/pengajuan/tindak-lanjut', [AdminController::class, 'tindakLanjut'])->name('admin.tindakLanjut');
-    
+
         // Route riwayat
         Route::get('/admin/riwayat', [AdminController::class, 'riwayat'])->name('admin.riwayat');
         Route::get('/admin/riwayat/detail-riwayat/{id}', [AdminController::class, 'detail_riwayat'])->name('admin.detail.riwayat');
-    
+
         // Route detail tindak lanjut
         Route::get('/admin/pengajuan/tindak-lanjut/detail-tindak-lanjut/{id}', [AdminController::class, 'detail'])->name('admin.detail.tindakLanjut');
     });
