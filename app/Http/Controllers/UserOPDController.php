@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengajuan;
+use App\Models\User;
+use App\Notifications\PengajuanNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -50,38 +52,28 @@ class UserOPDController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_aplikasi' => 'required',
-            'gambaran_umum' => 'required',
-            'jenis_pengguna' => 'required',
-            'fitur_fitur' => 'required',
-            'konsep_file' => 'required|file|mimes:pdf,doc,docx',
-            'setuju' => 'accepted'
-        ], [
-            'nama_aplikasi.required' => 'Nama aplikasi wajib diisi.',
-            'nama_aplikasi.alpha' => 'Nama aplikasi hanya boleh berisi huruf.',
-            'gambaran_umum.required' => 'Gambaran umum wajib diisi.',
-            'jenis_pengguna.required' => 'Jenis pengguna wajib diisi.',
-            'fitur_fitur.required' => 'Fitur-fitur wajib diisi.',
-            'konsep_file.required' => 'File konsep wajib diunggah.',
-            'konsep_file.file' => 'File konsep harus berupa file.',
-            'konsep_file.mimes' => 'File konsep harus berupa pdf, doc, atau docx.',
-            'setuju.accepted' => 'Anda harus menyetujui syarat dan ketentuan.'
-        ]);
+        // Validasi dan penyimpanan pengajuan
 
         try {
             $file = $request->file('konsep_file');
             $fileName = $file->getClientOriginalName();
             $filePath = $file->storeAs('public/konsep_files', $fileName);
 
-            Pengajuan::create([
+            $pengajuan = Pengajuan::create([
                 'nama_aplikasi' => $request->nama_aplikasi,
                 'gambaran_umum' => $request->gambaran_umum,
                 'jenis_pengguna' => $request->jenis_pengguna,
                 'fitur_fitur' => $request->fitur_fitur,
                 'konsep_file' => $filePath,
+                'status' => $request->input('status', 'Pending'),
                 'user_id' => Auth::id(),
             ]);
+
+            // Kirim notifikasi ke admin
+            $adminUsers = User::where('role', 'admin')->get();
+            foreach ($adminUsers as $admin) {
+                $admin->notify(new PengajuanNotification('Pengajuan baru telah diajukan oleh ' . Auth::user()->name));
+            }
 
             return redirect()->route('user_opd.tambahPengajuan')->with('success', 'Pengajuan berhasil disimpan!');
         } catch (\Exception $e) {
@@ -96,21 +88,7 @@ class UserOPDController extends Controller
 
     public function update(Request $request, Pengajuan $pengajuan)
     {
-        $request->validate([
-            'nama_aplikasi' => 'required',
-            'gambaran_umum' => 'required',
-            'jenis_pengguna' => 'required',
-            'fitur_fitur' => 'required',
-            'konsep_file' => 'nullable|file|mimes:pdf,doc,docx',
-        ], [
-            'nama_aplikasi.required' => 'Nama aplikasi wajib diisi.',
-            'nama_aplikasi.alpha' => 'Nama aplikasi hanya boleh berisi huruf.',
-            'gambaran_umum.required' => 'Gambaran umum wajib diisi.',
-            'jenis_pengguna.required' => 'Jenis pengguna wajib diisi.',
-            'fitur_fitur.required' => 'Fitur-fitur wajib diisi.',
-            'konsep_file.file' => 'File konsep harus berupa file.',
-            'konsep_file.mimes' => 'File konsep harus berupa pdf, doc, atau docx.',
-        ]);
+        // Validasi dan update pengajuan
 
         try {
             if ($request->hasFile('konsep_file')) {
@@ -133,9 +111,14 @@ class UserOPDController extends Controller
                 'gambaran_umum' => $request->gambaran_umum,
                 'jenis_pengguna' => $request->jenis_pengguna,
                 'fitur_fitur' => $request->fitur_fitur,
+                'status' => $request->input('status', 'Pending'),
             ]);
 
-            return redirect()->route('user_opd.ubahPengajuan', $pengajuan->id)->with('success', 'Pengajuan berhasil diubah!');
+            // Kirim notifikasi
+            $user = Auth::user();
+            $user->notify(new PengajuanNotification('Pengajuan berhasil diubah dan status diubah menjadi Pending!'));
+
+            return redirect()->route('user_opd.ubahPengajuan', $pengajuan->id)->with('success', 'Pengajuan berhasil diubah dan status diubah menjadi Pending!');
         } catch (\Exception $e) {
             return redirect()->route('user_opd.ubahPengajuan', $pengajuan->id)->with('error', 'Pengajuan gagal diubah! Silakan coba lagi.');
         }

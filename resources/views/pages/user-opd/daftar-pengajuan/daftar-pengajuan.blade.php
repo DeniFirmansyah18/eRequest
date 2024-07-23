@@ -26,9 +26,10 @@
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
                         <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Judul</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nama Aplikasi</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Progress</th>
                         <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Info</th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -36,6 +37,7 @@
                     <tr>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $loop->iteration }}</td>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $pengajuan->nama_aplikasi }}</td>
+                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $pengajuan->progress }}</td>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $pengajuan->status }}</td>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">
                             <div class="flex space-x-2">
@@ -45,7 +47,7 @@
                                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Hapus</button>
                                 </form>
                                 <a href="{{ route('user_opd.ubahPengajuan', $pengajuan->id) }}" class="bg-gray-500 text-white px-4 py-2 rounded">Ubah</a>
-                                <a href="{{ route('user_opd.detailPengajuan', $pengajuan->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Lihat Detail</a>
+                                <a href="{{ route('user_opd.detailPengajuan', $pengajuan->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Detail</a>
                             </div>
                         </td>
                     </tr>

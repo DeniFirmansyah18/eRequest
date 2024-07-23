@@ -74,11 +74,19 @@ class AdminController extends Controller
     {
         $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan->catatan_verifikator = $request->input('catatan_verifikator');
-        $pengajuan->progress = $request->input('progress');
 
         $pengajuan->save();
 
         return redirect()->route('admin.detail.tindakLanjut', $id)->with('success', 'Data berhasil diupdate');
+    }
+
+    public function updateProgress(Request $request, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->progress = $request->progress;
+        $pengajuan->save();
+
+        return response()->json(['success' => true]);
     }
 
 

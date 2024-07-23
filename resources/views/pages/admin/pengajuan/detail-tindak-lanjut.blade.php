@@ -148,10 +148,6 @@
                         <textarea name="catatan_verifikator" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->catatan_verifikator }}</textarea>
                     </div>
             </div>
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Progres Aplikasi</h2>
-            <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-4 mb-4">
-                <textarea name="progress" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->progress }}</textarea>
-            </div>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                 Simpan
             </button>

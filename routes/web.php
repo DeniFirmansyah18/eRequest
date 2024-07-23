@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/pengajuan/{id}/approve', [AdminController::class, 'approve'])->name('pengajuan.approve');
         Route::post('/pengajuan/{id}/reject', [AdminController::class, 'reject'])->name('pengajuan.reject');
         Route::post('/admin/pengajuan/update/{id}', [AdminController::class, 'update'])->name('admin.pengajuan.update');
+        Route::post('/admin/pengajuan/updateProgress/{id}', [AdminController::class, 'updateProgress'])->name('admin.pengajuan.updateProgress');
         Route::post('/admin/simpan-ke-riwayat/{id}', [AdminController::class, 'simpanKeRiwayat'])->name('admin.simpanKeRiwayat');
 
 
