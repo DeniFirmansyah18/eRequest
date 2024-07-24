@@ -31,7 +31,8 @@ class UserOPDController extends Controller
                     $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%')
                         ->orWhere('status', 'like', '%' . $searchTerm . '%');
                 });
-            })->paginate(10); // Adjust pagination as needed
+            })->orderBy('updated_at', 'desc')
+            ->paginate(10); // Adjust pagination as needed
 
         return view('pages.user-opd.daftar-pengajuan.daftar-pengajuan', compact('role', 'pengajuans', 'searchTerm'));
     }
@@ -53,20 +54,46 @@ class UserOPDController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi dan penyimpanan pengajuan
+        $messages = [
+            'nama_aplikasi.required' => 'Nama aplikasi wajib diisi.',
+            'nama_aplikasi.max' => 'Nama aplikasi tidak boleh lebih dari 255 karakter.',
+            'gambaran_umum.required' => 'Gambaran umum aplikasi wajib diisi.',
+            'gambaran_umum.max' => 'Gambaran umum aplikasi tidak boleh lebih dari 500 karakter.',
+            'jenis_pengguna.required' => 'Nama pengguna wajib diisi.',
+            'jenis_pengguna.max' => 'Nama pengguna tidak boleh lebih dari 255 karakter.',
+            'fitur_fitur.required' => 'Fitur-fitur aplikasi wajib diisi.',
+            'fitur_fitur.max' => 'Fitur-fitur aplikasi tidak boleh lebih dari 1000 karakter.',
+            'konsep_file.mimes' => 'File konsep harus berupa dokumen dengan format: doc, docx, atau pdf.',
+            'konsep_file.max' => 'Ukuran file konsep tidak boleh lebih dari 2MB.',
+            'konsep_file.required' => 'Silahkan upload file detail pengajuan.',
+            'setuju.required' => 'Anda harus menyetujui syarat dan ketentuan.',
+            'setuju.accepted' => 'Anda harus menyetujui syarat dan ketentuan.',
+        ];
+
+        $validatedData = $request->validate([
+            'nama_aplikasi' => 'required|string|max:255',
+            'gambaran_umum' => 'required|string|max:500',
+            'jenis_pengguna' => 'required|string|max:255',
+            'fitur_fitur' => 'required|string|max:1000',
+            'konsep_file' => 'required|file|mimes:doc,docx,pdf|max:2048',
+            'setuju' => 'required|accepted',
+        ], $messages);
 
         try {
-            $file = $request->file('konsep_file');
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs('public/konsep_files', $fileName);
+            $filePath = null;
+            if ($request->hasFile('konsep_file')) {
+                $file = $request->file('konsep_file');
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeAs('public/konsep_files', $fileName);
+            }
 
             $pengajuan = Pengajuan::create([
-                'nama_aplikasi' => $request->nama_aplikasi,
-                'gambaran_umum' => $request->gambaran_umum,
-                'jenis_pengguna' => $request->jenis_pengguna,
-                'fitur_fitur' => $request->fitur_fitur,
+                'nama_aplikasi' => $validatedData['nama_aplikasi'],
+                'gambaran_umum' => $validatedData['gambaran_umum'],
+                'jenis_pengguna' => $validatedData['jenis_pengguna'],
+                'fitur_fitur' => $validatedData['fitur_fitur'],
                 'konsep_file' => $filePath,
-                'status' => $request->input('status', 'Pending'),
+                'status' => 'Pending',
                 'user_id' => Auth::id(),
             ]);
 
@@ -76,11 +103,12 @@ class UserOPDController extends Controller
                 $admin->notify(new PengajuanNotification('Pengajuan baru (' . $pengajuan->nama_aplikasi . ') telah diajukan oleh ' . Auth::user()->name, $pengajuan->nama_aplikasi));
             }
 
-            return redirect()->route('user_opd.tambahPengajuan')->with('success', 'Pengajuan berhasil disimpan! , Silahkan menunggu konfirmasi');
+            return redirect()->route('user_opd.tambahPengajuan')->with('success', 'Pengajuan berhasil disimpan! Silakan menunggu konfirmasi');
         } catch (\Exception $e) {
             return redirect()->route('user_opd.tambahPengajuan')->with('error', 'Pengajuan gagal disimpan! Silakan coba lagi.');
         }
     }
+
 
     public function ubahPengajuan(Pengajuan $pengajuan)
     {

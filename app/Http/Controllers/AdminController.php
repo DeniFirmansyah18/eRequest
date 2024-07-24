@@ -12,7 +12,10 @@ class AdminController extends Controller
     public function dashboard()
     {
         $role = Auth::user()->role;
-        return view('pages.admin.dashboard.dashboard', compact('role'));
+        // Hitung jumlah pengajuan yang statusnya 'Pending'
+        $pendingCount = Pengajuan::where('status', 'Pending')->count();
+
+        return view('pages.admin.dashboard.dashboard', compact('role', 'pendingCount'));
     }
 
     public function daftarPengajuan(Request $request)
@@ -27,7 +30,8 @@ class AdminController extends Controller
                     $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%')
                         ->orWhere('status', 'like', '%' . $searchTerm . '%');
                 });
-            })->paginate(10); // Adjust pagination as needed
+            })->orderBy('updated_at', 'desc')
+            ->paginate(10); // Adjust pagination as needed
         return view('pages.admin.pengajuan.daftar-pengajuan', compact('role', 'pengajuan', 'searchTerm'));
     }
 
@@ -48,7 +52,8 @@ class AdminController extends Controller
                             $query->where('name_opd', 'like', '%' . $searchTerm . '%');
                         });
                 });
-            });
+            })
+            ->orderBy('updated_at', 'desc'); // Order by updated_at column in descending order
 
         // Get the paginated result
         $pengajuanPaginated = $pengajuanQuery->paginate(10);
@@ -58,11 +63,6 @@ class AdminController extends Controller
 
         return view('pages.admin.pengajuan.tindak-lanjut', compact('role', 'pengajuanGroup', 'searchTerm', 'pengajuanPaginated'));
     }
-
-
-
-
-
 
     public function detail($id)
     {
@@ -102,7 +102,8 @@ class AdminController extends Controller
                 return $query->where(function ($query) use ($searchTerm) {
                     $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%');
                 });
-            })->paginate(10); // Adjust pagination as needed
+            })->orderBy('updated_at', 'desc')
+            ->paginate(10); // Adjust pagination as needed
         return view('pages.admin.riwayat.riwayat', compact('role', 'pengajuan', 'searchTerm'));
     }
 
@@ -138,11 +139,11 @@ class AdminController extends Controller
             $pengajuan->status = 'Ditolak';
             $pengajuan->save();
 
-        // Kirim notifikasi ke user
-        $user = $pengajuan->user;
-        $namaAplikasi = $pengajuan->nama_aplikasi;
-        $message = "Pengajuan Anda ($namaAplikasi) ditolak.";
-        $user->notify(new StatusPengajuanNotification('Ditolak', $message, $namaAplikasi));
+            // Kirim notifikasi ke user
+            $user = $pengajuan->user;
+            $namaAplikasi = $pengajuan->nama_aplikasi;
+            $message = "Pengajuan Anda ($namaAplikasi) ditolak.";
+            $user->notify(new StatusPengajuanNotification('Ditolak', $message, $namaAplikasi));
 
             return redirect()->back()->with('ditolak', 'Pengajuan telah ');
         }
@@ -155,11 +156,11 @@ class AdminController extends Controller
             $pengajuan->status = 'Disetujui';
             $pengajuan->save();
 
-        // Kirim notifikasi ke user
-        $user = $pengajuan->user;
-        $namaAplikasi = $pengajuan->nama_aplikasi;
-        $message = "Pengajuan Anda ($namaAplikasi) telah disetujui.";
-        $user->notify(new StatusPengajuanNotification('Disetujui', $message, $namaAplikasi));
+            // Kirim notifikasi ke user
+            $user = $pengajuan->user;
+            $namaAplikasi = $pengajuan->nama_aplikasi;
+            $message = "Pengajuan Anda ($namaAplikasi) telah disetujui.";
+            $user->notify(new StatusPengajuanNotification('Disetujui', $message, $namaAplikasi));
 
             return redirect()->back()->with('disetujui', 'Pengajuan telah ');
         }

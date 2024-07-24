@@ -26,7 +26,7 @@ class PengajuansTableSeeder extends Seeder
                 'fitur_fitur' => $faker->words(3, true),
                 'konsep_file' => $faker->sentence,
                 'catatan_verifikator' => $faker->sentence,
-                'status' => $faker->randomElement(['Selesai', 'Disetujui', 'Ditolak', '']),
+                'status' => $faker->randomElement(['Selesai', 'Disetujui', 'Ditolak', 'Pending']),
                 'progress' => $faker->randomElement(['Dalam Tahap Analisis', '', 'Dalam Tahap Testing']),
                 'user_id' => $faker->numberBetween(2, 12), // Sesuaikan dengan user_id yang ada di database Anda
                 'created_at' => now(),

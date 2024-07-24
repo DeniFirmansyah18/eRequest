@@ -118,38 +118,34 @@
             <!-- Status Pengajuan -->
             <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Status Pengajuan</h2>
             <div class="flex justify-left">
+                <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-4 mb-4 w-full">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Catatan Verifikator</h2>
+                    <form action="{{ route('admin.pengajuan.update', $pengajuan->id) }}" method="POST">
 
-                <div class="bg-white dark:bg-gray-700 shadow-md rounded px-2 pt-6 pb-2 mb-4 max-w-48 w-full">
-                    <div class="flex space-x-2 mb-4">
-                        <!-- Form to approve pengajuan -->
-                        <form></form>
-                        <form action="{{ route('pengajuan.approve', $pengajuan->id) }}" method="POST" class="ml-3">
-                            @csrf
-                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
-                                Setuju
-                            </button>
-                        </form>
-                        <!-- Form to reject pengajuan -->
-                        <form action="{{ route('pengajuan.reject', $pengajuan->id) }}" method="POST" class="ml-2">
-                            @csrf
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
-                                Tolak
-                            </button>
-                        </form>
-                    </div>
+                        @csrf
+                        <div class="mb-4">
+                            <textarea name="catatan_verifikator" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->catatan_verifikator }}</textarea>
+                        </div>
+
+                        <div class="flex space-x-2 mb-4">
+                            <!-- Form to approve pengajuan -->
+                            <form></form>
+                            <form action="{{ route('pengajuan.approve', $pengajuan->id) }}" method="POST" class="ml-3">
+                                @csrf
+                                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
+                                    Setuju
+                                </button>
+                            </form>
+                            <!-- Form to reject pengajuan -->
+                            <form action="{{ route('pengajuan.reject', $pengajuan->id) }}" method="POST" class="ml-2">
+                                @csrf
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
+                                    Tolak
+                                </button>
+                            </form>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Catatan Verifikator</h2>
-            <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-4 mb-4">
-                <form action="{{ route('admin.pengajuan.update', $pengajuan->id) }}" method="POST">
-                    @csrf
-                    <div class="mb-4">
-                        <textarea name="catatan_verifikator" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->catatan_verifikator }}</textarea>
-                    </div>
-            </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-                Simpan
-            </button>
-            </form>
 </x-app-layout>
