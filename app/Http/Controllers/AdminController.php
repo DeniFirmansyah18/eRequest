@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengajuan;
+use App\Notifications\StatusPengajuanNotification;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -113,6 +114,12 @@ class AdminController extends Controller
             $pengajuan->save();
         }
 
+        // Kirim notifikasi ke user
+        $user = $pengajuan->user;
+        $namaAplikasi = $pengajuan->nama_aplikasi;
+        $message = "Pengajuan Anda ($namaAplikasi) telah selesai.";
+        $user->notify(new StatusPengajuanNotification('Selesai', $message, $namaAplikasi));
+
         return redirect()->route('admin.riwayat');
     }
 
@@ -130,6 +137,13 @@ class AdminController extends Controller
         if ($pengajuan) {
             $pengajuan->status = 'Ditolak';
             $pengajuan->save();
+
+        // Kirim notifikasi ke user
+        $user = $pengajuan->user;
+        $namaAplikasi = $pengajuan->nama_aplikasi;
+        $message = "Pengajuan Anda ($namaAplikasi) ditolak.";
+        $user->notify(new StatusPengajuanNotification('Ditolak', $message, $namaAplikasi));
+
             return redirect()->back()->with('ditolak', 'Pengajuan telah ');
         }
     }
@@ -140,6 +154,13 @@ class AdminController extends Controller
         if ($pengajuan) {
             $pengajuan->status = 'Disetujui';
             $pengajuan->save();
+
+        // Kirim notifikasi ke user
+        $user = $pengajuan->user;
+        $namaAplikasi = $pengajuan->nama_aplikasi;
+        $message = "Pengajuan Anda ($namaAplikasi) telah disetujui.";
+        $user->notify(new StatusPengajuanNotification('Disetujui', $message, $namaAplikasi));
+
             return redirect()->back()->with('disetujui', 'Pengajuan telah ');
         }
     }

@@ -7,15 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PengajuanNotification extends Notification implements ShouldQueue
+class StatusPengajuanNotification extends Notification
 {
     use Queueable;
 
-    private $message;
-    private $namaAplikasi;
+    protected $status;
+    protected $message;
+    protected $namaAplikasi;
 
-    public function __construct($message, $namaAplikasi)
+    public function __construct($status, $message, $namaAplikasi)
     {
+        $this->status = $status;
         $this->message = $message;
         $this->namaAplikasi = $namaAplikasi;
     }
@@ -28,15 +30,16 @@ class PengajuanNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->line('Status pengajuan Anda telah berubah menjadi: ' . $this->status)
                     ->line($this->message)
                     ->line('Nama Aplikasi: ' . $this->namaAplikasi)
-                    ->action('Lihat Pengajuan', url('/admin/pengajuan/daftar-pengajuan'))
-                    ->line('Silahkan untuk segera melakukan konfirmasi pengajuan');
+                    ->action('Lihat Perubahan Status', url('/user-opd/daftar-pengajuan'));
     }
 
     public function toArray($notifiable)
     {
         return [
+            'status' => $this->status,
             'message' => $this->message,
             'nama_aplikasi' => $this->namaAplikasi,
         ];

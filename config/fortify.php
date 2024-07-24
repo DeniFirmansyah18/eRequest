@@ -2,6 +2,7 @@
 
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
+use Illuminate\Support\Facades\Auth;
 
 return [
 
@@ -74,7 +75,9 @@ return [
     |
     */
 
-    'home' => '/admin/dashboard',
+    'home' => function () {
+        return Auth::user()->role == 'admin' ? '/admin/dashboard' : '/user-opd/dashboard';
+    },
     
 
     /*
