@@ -52,7 +52,7 @@
                                 <a href="{{ route('admin.detail.tindakLanjut', $item->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Detail</a>
                             </div>
                         </td>
-                    @endforeach
+                        @endforeach
                 </tbody>
             </table>
         </div>
@@ -92,45 +92,47 @@
         function openModal(id) {
             document.getElementById('progress-modal').classList.remove('hidden');
             document.getElementById('progress-form').action = '{{ route("admin.pengajuan.updateProgress", "") }}/' + id;
-    
+
             // Fetch progress data and fill the textarea
             fetch('{{ route("admin.pengajuan.update", "") }}/' + id)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('progress-textarea').value = data("progress-textarea");
+                    document.getElementById('progress-textarea').value = data.progress;
                 })
                 .catch(error => console.error('Error:', error));
         }
-    
+
         function closeModal() {
             document.getElementById('progress-modal').classList.add('hidden');
             document.getElementById('progress-textarea').value = ''; // Clear the textarea
         }
-    
+
         function submitProgress() {
             const form = document.getElementById('progress-form');
             const formData = new FormData(form);
             const action = form.action;
-    
+
             fetch(action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-Token': '{{ csrf_token() }}'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    closeModal();
-                    alert('Progress berhasil diupdate');
-                        // Optionally, update the progress on the page without reloading
-                } else {
-                    alert('Terjadi kesalahan saat mengupdate progress');
-                }
-            })
-            .catch(error => console.error('Error:', error));
+                    method: 'POST'
+                    , body: formData
+                    , headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                        , 'X-CSRF-Token': '{{ csrf_token() }}'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        closeModal();
+                        alert('Progress berhasil diupdate');
+                        window.location.reload(); // Refresh the page
+                    } else {
+                        alert('Terjadi kesalahan saat mengupdate progress');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
+
     </script>
+
 </x-app-layout>

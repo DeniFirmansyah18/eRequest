@@ -29,7 +29,9 @@ use App\Http\Controllers\UserOPDController;
 Route::redirect('/', 'login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
     Route::middleware(['auth', 'role:admin'])->group(function () {
+
         // Route untuk pengajuan dengan role admin
         Route::post('/pengajuan/{id}/approve', [AdminController::class, 'approve'])->name('pengajuan.approve');
         Route::post('/pengajuan/{id}/reject', [AdminController::class, 'reject'])->name('pengajuan.reject');

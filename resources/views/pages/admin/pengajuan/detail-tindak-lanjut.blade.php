@@ -56,7 +56,7 @@
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                         No Telepon:
                     </label>
-                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->user->no_telepon }}</p>
+                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->user->phone }}</p>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
@@ -121,31 +121,28 @@
                 <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-4 mb-4 w-full">
                     <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Catatan Verifikator</h2>
                     <form action="{{ route('admin.pengajuan.update', $pengajuan->id) }}" method="POST">
-
                         @csrf
+                        <input type="hidden" name="catatan_verifikator" value="{{ $pengajuan->catatan_verifikator }}">
+
                         <div class="mb-4">
                             <textarea name="catatan_verifikator" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->catatan_verifikator }}</textarea>
                         </div>
 
                         <div class="flex space-x-2 mb-4">
-                            <!-- Form to approve pengajuan -->
-                            <form></form>
-                            <form action="{{ route('pengajuan.approve', $pengajuan->id) }}" method="POST" class="ml-3">
-                                @csrf
-                                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
-                                    Setuju
-                                </button>
-                            </form>
-                            <!-- Form to reject pengajuan -->
-                            <form action="{{ route('pengajuan.reject', $pengajuan->id) }}" method="POST" class="ml-2">
-                                @csrf
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
-                                    Tolak
-                                </button>
-                            </form>
+                            <!-- Button to approve pengajuan -->
+                            <button type="submit" name="action" value="approve" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
+                                Setuju
+                            </button>
+
+                            <!-- Button to reject pengajuan -->
+                            <button type="submit" name="action" value="reject" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
+                                Tolak
+                            </button>
                         </div>
                     </form>
                 </div>
+                </form>
             </div>
+        </div>
 
 </x-app-layout>

@@ -75,8 +75,13 @@ class AdminController extends Controller
     {
         $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan->catatan_verifikator = $request->input('catatan_verifikator');
-
         $pengajuan->save();
+
+        if ($request->input('action') == 'approve') {
+            return $this->approve($id);
+        } elseif ($request->input('action') == 'reject') {
+            return $this->reject($id);
+        }
 
         return redirect()->route('admin.detail.tindakLanjut', $id)->with('success', 'Data berhasil diupdate');
     }
@@ -134,7 +139,7 @@ class AdminController extends Controller
 
     public function reject($id)
     {
-        $pengajuan = Pengajuan::find($id);
+        $pengajuan = Pengajuan::findOrFail($id);
         if ($pengajuan) {
             $pengajuan->status = 'Ditolak';
             $pengajuan->save();
@@ -145,13 +150,13 @@ class AdminController extends Controller
             $message = "Pengajuan Anda ($namaAplikasi) ditolak.";
             $user->notify(new StatusPengajuanNotification('Ditolak', $message, $namaAplikasi));
 
-            return redirect()->back()->with('ditolak', 'Pengajuan telah ');
+            return redirect()->back()->with('ditolak', 'Pengajuan telah ditolak.');
         }
     }
 
     public function approve($id)
     {
-        $pengajuan = Pengajuan::find($id);
+        $pengajuan = Pengajuan::findOrFail($id);
         if ($pengajuan) {
             $pengajuan->status = 'Disetujui';
             $pengajuan->save();
@@ -162,7 +167,7 @@ class AdminController extends Controller
             $message = "Pengajuan Anda ($namaAplikasi) telah disetujui.";
             $user->notify(new StatusPengajuanNotification('Disetujui', $message, $namaAplikasi));
 
-            return redirect()->back()->with('disetujui', 'Pengajuan telah ');
+            return redirect()->back()->with('disetujui', 'Pengajuan telah disetujui.');
         }
     }
 }
