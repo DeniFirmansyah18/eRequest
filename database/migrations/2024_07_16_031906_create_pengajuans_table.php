@@ -19,6 +19,8 @@ class CreatePengajuansTable extends Migration
             $table->text('gambaran_umum');
             $table->text('jenis_pengguna');
             $table->text('fitur_fitur');
+            $table->string('narahubung', 255)->nullable();
+            $table->string('kontak', 255)->nullable();
             $table->string('konsep_file');
             $table->text('catatan_verifikator')->nullable();
             $table->string('status', 255)->nullable();

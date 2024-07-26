@@ -86,6 +86,26 @@
                 </div>
 
                 <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
+                        Narahubung:
+                    </label>
+                    <textarea name="narahubung" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="1" placeholder="Silahkan masukkan nama narahubung">{{ old('narahubung') }}</textarea>
+                    @error('narahubung')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
+                        Kontak yang bisa dihubungi:
+                    </label>
+                    <textarea name="kontak" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="1" placeholder="Contoh: 081111111111">{{ old('kontak') }}</textarea>
+                    @error('kontak')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
                     <label class="inline-flex items-center">
                         <input type="checkbox" name="setuju" class="form-checkbox h-5 w-5 text-blue-600">
                         <span class="ml-2 text-gray-700 dark:text-gray-300">Setuju dan Lanjutkan</span>

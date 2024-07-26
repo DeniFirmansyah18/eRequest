@@ -41,13 +41,15 @@
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $pengajuan->status }}</td>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">
                             <div class="flex space-x-2">
+                                <a href="{{ route('user_opd.detailPengajuan', $pengajuan->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Detail</a>
+                                @if($pengajuan->status != 'Disetujui' && $pengajuan->status != 'Selesai')
+                                <a href="{{ route('user_opd.ubahPengajuan', $pengajuan->id) }}" class="bg-gray-500 text-white px-4 py-2 rounded">Ubah</a>
                                 <form action="{{ route('user_opd.destroy', $pengajuan->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengajuan ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Hapus</button>
                                 </form>
-                                <a href="{{ route('user_opd.ubahPengajuan', $pengajuan->id) }}" class="bg-gray-500 text-white px-4 py-2 rounded">Ubah</a>
-                                <a href="{{ route('user_opd.detailPengajuan', $pengajuan->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Detail</a>
+                                @endif
                             </div>
                         </td>
                     </tr>
@@ -55,6 +57,7 @@
                 </tbody>
             </table>
         </div>
+
 
         <div class="mt-4">
             {{ $pengajuans->appends(['search' => $searchTerm])->links() }}

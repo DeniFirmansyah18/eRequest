@@ -24,6 +24,8 @@ class PengajuansTableSeeder extends Seeder
                 'gambaran_umum' => $faker->sentence,
                 'jenis_pengguna' => $faker->randomElement(['Admin, user', 'Admin, User, Guest']),
                 'fitur_fitur' => $faker->words(3, true),
+                'narahubung' => $faker->name,
+                'kontak' => $faker->phoneNumber,
                 'konsep_file' => $faker->sentence,
                 'catatan_verifikator' => $faker->sentence,
                 'status' => $faker->randomElement(['Selesai', 'Disetujui', 'Ditolak', 'Pending']),
