@@ -86,14 +86,14 @@
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="nama_aplikasi">
                         Narahubung:
                     </label>
-                    <input class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" type="text" name="nama_aplikasi" value="{{ $pengajuan->narahubung }}" required>
+                    <input class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" type="text" name="narahubung" value="{{ $pengajuan->narahubung }}" required>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="nama_aplikasi">
                         Kontak:
                     </label>
-                    <input class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" type="text" name="nama_aplikasi" value="{{ $pengajuan->kontak }}" required>
+                    <input class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" type="text" name="kontak" value="{{ $pengajuan->kontak }}" required>
                 </div>
 
                 <div class="mb-4">
