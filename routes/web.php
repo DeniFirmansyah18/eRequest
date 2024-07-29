@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         // Route riwayat
         Route::get('/admin/riwayat', [AdminController::class, 'riwayat'])->name('admin.riwayat');
         Route::get('/admin/riwayat/detail-riwayat/{id}', [AdminController::class, 'detail_riwayat'])->name('admin.detail.riwayat');
+        Route::get('/admin/riwayat/{id}/print', [AdminController::class, 'print'])->name('admin.pengajuan.print');
 
         // Route detail tindak lanjut
         Route::get('/admin/pengajuan/tindak-lanjut/detail-tindak-lanjut/{id}', [AdminController::class, 'detail'])->name('admin.detail.tindakLanjut');

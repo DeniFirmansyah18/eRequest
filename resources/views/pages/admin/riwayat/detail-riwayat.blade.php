@@ -11,7 +11,9 @@
 
             <!-- Right: Actions -->
             <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-                <!-- Add any buttons or actions here -->
+                <a href="{{ route('admin.pengajuan.print', $pengajuan->id) }}" class="bg-green-500 text-white font-bold py-2 px-4 rounded">
+                    Cetak Surat
+                </a>
             </div>
 
         </div>
@@ -102,10 +104,6 @@
                     <div class="mb-4">
                         <p name="catatan_verifikator" class="w-full px-3 py-14 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->catatan_verifikator }}</p>
                     </div>
-
-
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Progres Aplikasi</h2>
-                    <p name="progress" class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600" rows="3">{{ $pengajuan->progress }}</p>
                 </form>
             </div>
         </div>

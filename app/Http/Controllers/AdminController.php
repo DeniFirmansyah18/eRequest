@@ -143,6 +143,13 @@ class AdminController extends Controller
         return view('pages.admin.riwayat.detail-riwayat', compact('role', 'pengajuan'));
     }
 
+    public function print($id)
+    {
+        $role = Auth::user()->role;
+        $pengajuan = Pengajuan::findOrFail($id);
+        return view('pages.admin.riwayat.print', compact('role', 'pengajuan'));
+    }
+
     public function reject($id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
