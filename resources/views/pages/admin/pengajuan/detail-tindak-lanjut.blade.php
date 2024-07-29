@@ -129,6 +129,7 @@
                         </div>
 
                         <div class="flex space-x-2 mb-4">
+                            @if($pengajuan->status != 'Disetujui' && $pengajuan->status != 'Ditolak')
                             <!-- Button to approve pengajuan -->
                             <button type="submit" name="action" value="approve" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
                                 Setuju
@@ -138,6 +139,7 @@
                             <button type="submit" name="action" value="reject" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
                                 Tolak
                             </button>
+                            @endif
                         </div>
                     </form>
                 </div>

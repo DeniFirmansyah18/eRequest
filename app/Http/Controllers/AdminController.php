@@ -86,6 +86,12 @@ class AdminController extends Controller
         return redirect()->route('admin.detail.tindakLanjut', $id)->with('success', 'Data berhasil diupdate');
     }
 
+    public function getProgress($id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        return response()->json(['progress' => $pengajuan->progress]);
+    }
+
     public function updateProgress(Request $request, $id)
     {
         $pengajuan = Pengajuan::findOrFail($id);

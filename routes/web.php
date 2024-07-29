@@ -1,17 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DataFeedController;
-use App\Http\Controllers\PengajuanController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RiwayatController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\JobController;
-use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserOPDController;
 
@@ -37,6 +26,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/pengajuan/{id}/reject', [AdminController::class, 'reject'])->name('pengajuan.reject');
         Route::post('/admin/pengajuan/update/{id}', [AdminController::class, 'update'])->name('admin.pengajuan.update');
         Route::post('/admin/pengajuan/updateProgress/{id}', [AdminController::class, 'updateProgress'])->name('admin.pengajuan.updateProgress');
+        Route::get('/admin/pengajuan/getProgress/{id}', [AdminController::class, 'getProgress'])->name('admin.pengajuan.getProgress');
         Route::post('/admin/simpan-ke-riwayat/{id}', [AdminController::class, 'simpanKeRiwayat'])->name('admin.simpanKeRiwayat');
 
 

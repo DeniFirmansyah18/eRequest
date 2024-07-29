@@ -30,7 +30,6 @@
                         <th class="px-4 py-2 text-left text-base font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nama OPD</th>
                         <th class="px-4 py-2 text-left text-base font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
                         <th class="px-4 py-2 text-left text-base font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Progress</th>
-
                         <th class="px-4 py-2 text-left text-base font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Info</th>
                     </tr>
                 </thead>
@@ -52,7 +51,7 @@
                                 <a href="{{ route('admin.detail.tindakLanjut', $item->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Detail</a>
                             </div>
                         </td>
-                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -88,51 +87,52 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function openModal(id) {
-            document.getElementById('progress-modal').classList.remove('hidden');
-            document.getElementById('progress-form').action = '{{ route("admin.pengajuan.updateProgress", "") }}/' + id;
-
+            $('#progress-modal').removeClass('hidden');
+            $('#progress-form').attr('action', '{{ route("admin.pengajuan.updateProgress", "") }}/' + id);
+    
             // Fetch progress data and fill the textarea
-            fetch('{{ route("admin.pengajuan.update", "") }}/' + id)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('progress-textarea').value = data.progress;
-                })
-                .catch(error => console.error('Error:', error));
+            $.ajax({
+                url: '{{ route("admin.pengajuan.getProgress", "") }}/' + id,
+                method: 'GET',
+                success: function(data) {
+                    $('#progress-textarea').val(data.progress);
+                },
+                error: function(xhr) {
+                    console.error('Error:', xhr.responseText);
+                }
+            });
         }
-
+    
         function closeModal() {
-            document.getElementById('progress-modal').classList.add('hidden');
-            document.getElementById('progress-textarea').value = ''; // Clear the textarea
+            $('#progress-modal').addClass('hidden');
+            $('#progress-textarea').val(''); // Clear the textarea
         }
-
+    
         function submitProgress() {
-            const form = document.getElementById('progress-form');
-            const formData = new FormData(form);
-            const action = form.action;
-
-            fetch(action, {
-                    method: 'POST'
-                    , body: formData
-                    , headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                        , 'X-CSRF-Token': '{{ csrf_token() }}'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
+            const form = $('#progress-form');
+            const action = form.attr('action');
+            const formData = form.serialize();
+    
+            $.ajax({
+                url: action,
+                method: 'POST',
+                data: formData,
+                success: function(data) {
                     if (data.success) {
                         closeModal();
                         alert('Progress berhasil diupdate');
-                        window.location.reload(); // Refresh the page
+                        location.reload();
                     } else {
                         alert('Terjadi kesalahan saat mengupdate progress');
                     }
-                })
-                .catch(error => console.error('Error:', error));
+                },
+                error: function(xhr) {
+                    console.error('Error:', xhr.responseText);
+                }
+            });
         }
-
     </script>
-
 </x-app-layout>
