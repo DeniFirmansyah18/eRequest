@@ -14,6 +14,8 @@ class Pengajuan extends Model
         'gambaran_umum',
         'jenis_pengguna',
         'fitur_fitur',
+        'narahubung',
+        'kontak',
         'konsep_file',
         'status',
         'progress',

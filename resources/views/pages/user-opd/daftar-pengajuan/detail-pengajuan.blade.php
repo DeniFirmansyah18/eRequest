@@ -67,6 +67,19 @@
                 </div>
             </div>
 
+            <div class="mb-4">
+                <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
+                    Narahubung:
+                </label>
+                <p class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600">{{ $pengajuan->narahubung }}</p>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
+                    Kontak:
+                </label>
+                <p class="w-full px-3 py-2 text-gray-700 dark:text-gray-300 border rounded-lg focus:outline-none bg-gray-200 dark:bg-gray-600">{{ $pengajuan->kontak }}</p>
+            </div>
+
             <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Catatan Verifikator</h2>
             <form action="" method="POST">
                 @csrf

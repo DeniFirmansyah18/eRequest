@@ -63,6 +63,10 @@ class UserOPDController extends Controller
             'jenis_pengguna.max' => 'Nama pengguna tidak boleh lebih dari 255 karakter.',
             'fitur_fitur.required' => 'Fitur-fitur aplikasi wajib diisi.',
             'fitur_fitur.max' => 'Fitur-fitur aplikasi tidak boleh lebih dari 1000 karakter.',
+            'narahubung.required' => 'Narahubung aplikasi wajib diisi.',
+            'narahubung.max' => 'Narahubung aplikasi tidak boleh lebih dari 100 karakter.',
+            'kontak.required' => 'Kontak aplikasi wajib diisi.',
+            'kontak.max' => 'Kontak aplikasi tidak boleh lebih dari 100 karakter.',
             'konsep_file.mimes' => 'File konsep harus berupa dokumen dengan format: doc, docx, atau pdf.',
             'konsep_file.max' => 'Ukuran file konsep tidak boleh lebih dari 2MB.',
             'konsep_file.required' => 'Silahkan upload file detail pengajuan.',
@@ -75,6 +79,8 @@ class UserOPDController extends Controller
             'gambaran_umum' => 'required|string|max:500',
             'jenis_pengguna' => 'required|string|max:255',
             'fitur_fitur' => 'required|string|max:1000',
+            'narahubung' => 'required|string|max:100',
+            'kontak' => 'required|string|max:100',
             'konsep_file' => 'required|file|mimes:doc,docx,pdf|max:2048',
             'setuju' => 'required|accepted',
         ], $messages);
@@ -92,6 +98,8 @@ class UserOPDController extends Controller
                 'gambaran_umum' => $validatedData['gambaran_umum'],
                 'jenis_pengguna' => $validatedData['jenis_pengguna'],
                 'fitur_fitur' => $validatedData['fitur_fitur'],
+                'narahubung' => $validatedData['narahubung'],
+                'kontak' => $validatedData['kontak'],
                 'konsep_file' => $filePath,
                 'status' => 'Pending',
                 'user_id' => Auth::id(),
@@ -140,6 +148,8 @@ class UserOPDController extends Controller
                 'gambaran_umum' => $request->gambaran_umum,
                 'jenis_pengguna' => $request->jenis_pengguna,
                 'fitur_fitur' => $request->fitur_fitur,
+                'narahubung' => $request->narahubung,
+                'kontak' => $request->kontak,
                 'status' => $request->input('status', 'Pending'),
             ]);
 
