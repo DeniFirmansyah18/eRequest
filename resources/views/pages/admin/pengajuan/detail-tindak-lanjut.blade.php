@@ -42,21 +42,21 @@
             <div class="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-                        Nama Pengguna:
-                    </label>
-                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->user->name }}</p>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-                        OPD:
+                        Nama OPD:
                     </label>
                     <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->user->name_opd }}</p>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
-                        No Telepon:
+                        Narahubung:
                     </label>
-                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->user->phone }}</p>
+                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->narahubung }}</p>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
+                        Kontak:
+                    </label>
+                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->kontak }}</p>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">

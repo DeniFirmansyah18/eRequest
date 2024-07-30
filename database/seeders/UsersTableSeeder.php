@@ -22,9 +22,7 @@ class UsersTableSeeder extends Seeder
         // Insert data admin
         DB::table('users')->insert([
             [
-                'name' => 'ADMIN',
-                'name_opd' => 'DISKOMINFO',
-                'phone' => '1234567890',
+                'name' => 'DISKOMINFO',
                 'email' => 'admin@gmail.com',
                 'alamat' => 'Mojokerto',
                 'role' => 'admin',
@@ -39,9 +37,7 @@ class UsersTableSeeder extends Seeder
         // Insert data user
         DB::table('users')->insert([
             [
-                'name' => 'USER',
-                'name_opd' => 'DISNAKER',
-                'phone' => '089218031',
+                'name' => 'DISNAKER',
                 'email' => 'user@gmail.com',
                 'alamat' => 'Mojokerto',
                 'role' => 'user_opd',
@@ -57,8 +53,6 @@ class UsersTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             DB::table('users')->insert([
                 'name' => $faker->name,
-                'name_opd' => $faker->company,
-                'phone' => $faker->phoneNumber,
                 'email' => $faker->unique()->safeEmail,
                 'alamat' => $faker->address,
                 'role' => $faker->randomElement(['user_opd']),

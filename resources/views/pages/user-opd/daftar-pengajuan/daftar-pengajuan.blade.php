@@ -49,6 +49,10 @@
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Hapus</button>
                                 </form>
+                                @elseif($pengajuan->status == 'Selesai')
+                                <a href="{{ route('admin.pengajuan.print', $pengajuan->id) }}" class="bg-green-500 text-white py-2 px-4 rounded">
+                                    Cetak Surat
+                                </a>    
                                 @endif
                             </div>
                         </td>

@@ -5,18 +5,8 @@
         @csrf
         <div class="space-y-4">
             <div>
-                <x-label for="name">{{ __('Nama Lengkap') }} <span class="text-red-500">*</span></x-label>
+                <x-label for="name">{{ __('Nama OPD') }} <span class="text-red-500">*</span></x-label>
                 <x-input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
-
-            <div>
-                <x-label for="name_opd">{{ __('Nama OPD') }} <span class="text-red-500">*</span></x-label>
-                <x-input id="name_opd" type="name_opd" name="name_opd" :value="old('name_opd')" required />
-            </div>
-
-            <div>
-                <x-label for="phone">{{ __('Nomer Telepon') }} <span class="text-red-500">*</span></x-label>
-                <x-input id="phone" type="phone" name="phone" :value="old('phone')" required />
             </div>
 
             <div>

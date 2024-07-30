@@ -49,21 +49,9 @@
         @endif
 
         <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Nama') }}" />
+            <x-label for="name" value="{{ __('Nama OPD') }}" />
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
-        </div>
-
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="name_opd" value="{{ __('Nama OPD') }}" />
-            <x-input id="name_opd" type="text" class="mt-1 block w-full" wire:model.defer="state.name_opd" required autocomplete="name_opd" />
-            <x-input-error for="name_opd" class="mt-2" />
-        </div>
-
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="phone" value="{{ __('Nomer Telepon') }}" />
-            <x-input id="phone" type="number" class="mt-1 block w-full" wire:model.defer="state.phone" required autocomplete="phone" />
-            <x-input-error for="phone" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
