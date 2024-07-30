@@ -38,7 +38,7 @@
                     <tr>
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $index + 1 }}</td>
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $item->nama_aplikasi }}</td>
-                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $item->user->name_opd }}</td>
+                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $item->user->name }}</td>
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">
                             <span class="@if($item->status == 'Disetujui') text-green-500 @elseif($item->status == 'Ditolak') text-red-500 @else text-gray-500 @endif">
                                 {{ $item->status }}

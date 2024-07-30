@@ -3,120 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print Detail Pengajuan</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
+
         .container {
             padding: 20px;
         }
+
         .header {
             text-align: center;
             margin-bottom: 20px;
+            position: relative;
         }
-        .header h1, .header h2, .header p {
+
+        .header h2,
+        .header p {
             margin: 0;
         }
+
+        .header hr {
+            margin-top: 10px;
+        }
+
         .section {
             margin-bottom: 20px;
         }
-        .section h2 {
-            margin-bottom: 10px;
+
+        .section-right {
+            text-align: right;
+
         }
+
         .section p {
             margin: 5px 0;
         }
+
         .footer {
-            margin-top: 100px;
+            margin-top: 50px;
         }
-        .footer .left, .footer .right {
+
+        .footer .left,
+        .footer .right {
             width: 45%;
             display: inline-block;
             vertical-align: top;
             text-align: center;
         }
+
         .footer .left {
             float: left;
         }
+
         .footer .right {
             float: right;
         }
+
         .footer p {
             margin: 0;
             font-size: 14px;
         }
+
         .header img {
             float: left;
-            margin-left: 20px;
-            max-width: 90px;
+            left: 20px;
+            top: 0;
+            max-width: 85px;
         }
+
+        .item-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .item-table th,
+        .item-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .item-table th {
+            background-color: #f2f2f2;
+        }
+
+        .signature {
+            margin-top: 10px;
+        }
+
+        .signature .sign {
+            width: 30%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .signature .sign.left {
+            float: left;
+        }
+
+        .signature .sign.right {
+            float: right;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <img src="/images/kab-mjk.png" alt="Logo">
-            <h1>PEMERINTAH KOTA MOJOKERTO</h1>
+            <h2>PEMERINTAH KABUPATEN MOJOKERTO</h2>
             <h2>DINAS KOMUNIKASI DAN INFORMATIKA</h2>
             <p>Jl. Kyai H. Hasyim Ashari Nomor 12, Jawa Timur. Telp. (0321) 391268</p>
             <p>E-mail: diskominfo@mojokertokab.go.id</p>
-            <p>Kode Pos 61318</p>
+            <p>MOJOKERTO 61318</p>
             <hr>
-            <h2>PEMOHONAN PENGAJUAN APLIKASI</h2>
-            <p>Nomor:</p>
-        </div>
-
-        <div class="opening">
-            <p>Pengajuan aplikasi berikut telah selesai diproses. Berikut adalah detail dari pengajuan aplikasi yang telah diajukan oleh pengguna:</p>
+            <h2>BERITA ACARA PENERIMAAN SOFTWARE</h2>
         </div>
 
         <div class="section">
-            <h2>Informasi Pengguna</h2>
-            <p><strong>Nama:</strong> {{ $pengajuan->user->name }}</p>
-            <p><strong>Nama OPD:</strong> {{ $pengajuan->user->name_opd }}</p>
-            <p><strong>Telepon:</strong> {{ $pengajuan->user->phone }}</p>
-            <p><strong>Email:</strong> {{ $pengajuan->user->email }}</p>
-            <p><strong>Alamat:</strong> {{ $pengajuan->user->alamat }}</p>
+            <p>Nomor: </p>
+            <br>
+            <p>Pengajuan aplikasi telah selesai diproses. Berikut adalah detail dari pengajuan aplikasi yang telah diajukan oleh pengguna:</p>
+            <p><strong>Nama :</strong> {{ $pengajuan->narahubung }}</p>
+            <p><strong>Selaku :</strong> Narahubung</p>
         </div>
 
-        <div class="section">
-            <h2>Informasi Aplikasi</h2>
-            <p><strong>Nama Aplikasi:</strong> {{ $pengajuan->nama_aplikasi }}</p>
-            <p><strong>Jenis Pengguna:</strong> {{ $pengajuan->jenis_pengguna }}</p>
-            <p><strong>Fitur-fitur:</strong> {{ $pengajuan->fitur_fitur }}</p>
-            <p><strong>Status:</strong> {{ $pengajuan->status }}</p>
-        </div>
+        <table class="item-table">
+            <tr>
+                <th>Nama Aplikasi</th>
+                <th>Jenis Pengguna</th>
+                <th>Fitur Aplikasi</th>
+            </tr>
+            <tr>
+                <td> {{ $pengajuan->nama_aplikasi }}</td>
+                <td> {{ $pengajuan->jenis_pengguna }}</td>
+                <td> {{ $pengajuan->fitur_fitur }}</td>
+            </tr>
+        </table>
 
         <div class="section">
             <p>Demikian Surat Pengajuan Aplikasi ini dibuat, untuk langkah selanjutnya bisa segera melakukan konfirmasi kepada dinas terkait.</p>
-            <br>
+            <br><br>
+        </div>
+        <div class="section-right">
             <p>Mojokerto, {{ $pengajuan->created_at->format('d-m-Y') }}</p>
         </div>
 
-        <div class="footer">
-            <div class="left">
-                <p>Penanggung Jawab</p>
-                <br>
-                <br>
-                <br>
-                <br>
-                <p><strong>Nama</strong></p>
+        <div class="signature">
+            <div class="sign left">
+                <p>Kepala Bidang Informatika</p>
+                <br><br><br><br>
+                <p><strong>DIDING ADI PARWOTO, S.Kom., M.Eng.</strong></p>
             </div>
-            <div class="right">
-                <p>Mengetahui</p>
-                <br>
-                <br>
-                <br>
-                <br>
-                <p><strong>Nama</strong></p>
+            <div class="sign right">
+                <p>Penanggung Jawab</p>
+                <br><br><br><br>
+                <p><strong>..................</strong></p>
             </div>
         </div>
     </div>
     <script>
         window.print();
+
     </script>
 </body>
 </html>

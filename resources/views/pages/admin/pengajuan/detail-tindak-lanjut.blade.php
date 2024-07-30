@@ -44,7 +44,7 @@
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">
                         Nama OPD:
                     </label>
-                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->user->name_opd }}</p>
+                    <p class="text-gray-700 dark:text-gray-300">{{ $pengajuan->user->name }}</p>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">

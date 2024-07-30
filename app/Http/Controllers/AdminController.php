@@ -49,7 +49,7 @@ class AdminController extends Controller
                     $query->where('nama_aplikasi', 'like', '%' . $searchTerm . '%')
                         ->orWhere('status', 'like', '%' . $searchTerm . '%')
                         ->orWhereHas('user', function ($query) use ($searchTerm) {
-                            $query->where('name_opd', 'like', '%' . $searchTerm . '%');
+                            $query->where('name', 'like', '%' . $searchTerm . '%');
                         });
                 });
             })
@@ -58,8 +58,8 @@ class AdminController extends Controller
         // Get the paginated result
         $pengajuanPaginated = $pengajuanQuery->paginate(10);
 
-        // Group the results by user.name_opd
-        $pengajuanGroup = $pengajuanPaginated->groupBy('user.name_opd');
+        // Group the results by nama opd
+        $pengajuanGroup = $pengajuanPaginated->groupBy('user.name');
 
         return view('pages.admin.pengajuan.tindak-lanjut', compact('role', 'pengajuanGroup', 'searchTerm', 'pengajuanPaginated'));
     }
