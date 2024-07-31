@@ -158,10 +158,10 @@ class AdminController extends Controller
             $pengajuan->save();
 
             // Kirim notifikasi ke user
-            $user = $pengajuan->user;
-            $namaAplikasi = $pengajuan->nama_aplikasi;
-            $message = "Pengajuan Anda ($namaAplikasi) ditolak.";
-            $user->notify(new StatusPengajuanNotification('Ditolak', $message, $namaAplikasi));
+            //$user = $pengajuan->user;
+            //$namaAplikasi = $pengajuan->nama_aplikasi;
+            //$message = "Pengajuan Anda ($namaAplikasi) ditolak.";
+            //$user->notify(new StatusPengajuanNotification('Ditolak', $message, $namaAplikasi));
 
             return redirect()->back()->with('ditolak', 'Pengajuan telah ditolak.');
         }
@@ -175,10 +175,10 @@ class AdminController extends Controller
             $pengajuan->save();
 
             // Kirim notifikasi ke user
-            $user = $pengajuan->user;
-            $namaAplikasi = $pengajuan->nama_aplikasi;
-            $message = "Pengajuan Anda ($namaAplikasi) telah disetujui.";
-            $user->notify(new StatusPengajuanNotification('Disetujui', $message, $namaAplikasi));
+            //$user = $pengajuan->user;
+            //$namaAplikasi = $pengajuan->nama_aplikasi;
+            //$message = "Pengajuan Anda ($namaAplikasi) telah disetujui.";
+            //user->notify(new StatusPengajuanNotification('Disetujui', $message, $namaAplikasi));
 
             return redirect()->back()->with('disetujui', 'Pengajuan telah disetujui.');
         }
