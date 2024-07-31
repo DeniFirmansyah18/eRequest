@@ -38,7 +38,7 @@
                     <div class="flex items-center">
 
                         <!-- Menampilkan status pengajuan -->
-                        <span class="font-semibold {{ $pengajuan->status == 'Disetujui' ? 'text-green-600 dark:text-green-400' : ($pengajuan->status == 'Ditolak' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400') }}">
+                        <span class="font-semibold {{ $pengajuan->status == 'Disetujui' ? 'inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-base font-medium text-green-700 ring-1 ring-inset ring-green-600/20' : ($pengajuan->status == 'Ditolak' ? 'inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-base font-medium text-red-700 ring-1 ring-inset ring-red-600/10' : 'inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-base font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20') }}">
                             {{ $pengajuan->status }}
                         </span>
 

@@ -26,12 +26,12 @@
     </form>
     <x-validation-errors class="mt-4" />
     <!-- Footer -->
-    <div class="pt-5 mt-6 border-t border-gray-100 dark:border-gray-700/60">
+    <!--<div class="pt-5 mt-6 border-t border-gray-100 dark:border-gray-700/60">
         <div class="text-sm">
             {{ _('Belum memiliki akun?') }} <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="{{ route('register') }}">{{ _('Daftar') }}</a>
         </div>
         <div class="text-sm">
             {{ _('Lupa Kata Sandi?') }} <a class="font-medium text-violet-500 hover:text-violet-600 dark:hover:text-violet-400" href="{{ route('password.request') }}">{{ _('Ubah') }}</a>
         </div>
-    </div>
+    </div>-->
 </x-authentication-layout>

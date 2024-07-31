@@ -40,7 +40,9 @@
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $item->nama_aplikasi }}</td>
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">{{ $item->user->name }}</td>
                         <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">
-                            <span class="@if($item->status == 'Disetujui') text-green-500 @elseif($item->status == 'Ditolak') text-red-500 @else text-gray-500 @endif">
+                            <span class="@if($item->status == 'Disetujui') inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-base font-medium text-green-700 ring-1 ring-inset ring-green-600/20 @elseif($item->status == 'Ditolak') 
+                                inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-base font-medium text-red-700 ring-1 ring-inset ring-red-600/10 
+                                @else inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-base font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20 @endif">
                                 {{ $item->status }}
                             </span>
                         </td>

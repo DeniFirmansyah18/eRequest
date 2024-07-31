@@ -106,12 +106,12 @@ class UserOPDController extends Controller
             ]);
 
             // Kirim notifikasi ke admin
-            $adminUsers = User::where('role', 'admin')->get();
-            foreach ($adminUsers as $admin) {
-                $admin->notify(new PengajuanNotification('Pengajuan baru (' . $pengajuan->nama_aplikasi . ') telah diajukan oleh ' . Auth::user()->name, $pengajuan->nama_aplikasi));
-            }
+            //$adminUsers = User::where('role', 'admin')->get();
+            //foreach ($adminUsers as $admin) {
+            //    $admin->notify(new PengajuanNotification('Pengajuan baru (' . $pengajuan->nama_aplikasi . ') telah diajukan oleh ' . Auth::user()->name, $pengajuan->nama_aplikasi));
+            //}
 
-            return redirect()->route('user_opd.tambahPengajuan')->with('success', 'Pengajuan berhasil disimpan! Silakan menunggu konfirmasi');
+            return redirect()->route('user_opd.tambahPengajuan')->with('success', 'Pengajuan berhasil disimpan! Silakan menunggu konfirmasi.');
         } catch (\Exception $e) {
             return redirect()->route('user_opd.tambahPengajuan')->with('error', 'Pengajuan gagal disimpan! Silakan coba lagi.');
         }
@@ -154,10 +154,10 @@ class UserOPDController extends Controller
             ]);
 
             // Kirim notifikasi ke admin
-            $adminUsers = User::where('role', 'admin')->get();
-            foreach ($adminUsers as $admin) {
-                $admin->notify(new PengajuanNotification('Pengajuan (' . $pengajuan->nama_aplikasi . ') telah diubah oleh ' . Auth::user()->name, $pengajuan->nama_aplikasi));
-            }
+            //$adminUsers = User::where('role', 'admin')->get();
+            //foreach ($adminUsers as $admin) {
+            //    $admin->notify(new PengajuanNotification('Pengajuan (' . $pengajuan->nama_aplikasi . ') telah diubah oleh ' . Auth::user()->name, $pengajuan->nama_aplikasi));
+            //}
 
             return redirect()->route('user_opd.ubahPengajuan', $pengajuan->id)->with('success', 'Pengajuan berhasil diubah, Silahkan menunggu konfirmasi perubahan');
         } catch (\Exception $e) {

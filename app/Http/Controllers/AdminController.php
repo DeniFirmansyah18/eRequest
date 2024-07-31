@@ -127,10 +127,10 @@ class AdminController extends Controller
         }
 
         // Kirim notifikasi ke user
-        $user = $pengajuan->user;
-        $namaAplikasi = $pengajuan->nama_aplikasi;
-        $message = "Pengajuan Anda ($namaAplikasi) telah selesai.";
-        $user->notify(new StatusPengajuanNotification('Selesai', $message, $namaAplikasi));
+        //$user = $pengajuan->user;
+        //$namaAplikasi = $pengajuan->nama_aplikasi;
+        //$message = "Pengajuan Anda ($namaAplikasi) telah selesai.";
+        //$user->notify(new StatusPengajuanNotification('Selesai', $message, $namaAplikasi));
 
         return redirect()->route('admin.riwayat');
     }

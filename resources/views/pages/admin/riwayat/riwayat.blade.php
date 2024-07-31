@@ -25,19 +25,19 @@
             <table class="table-auto w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nama Aplikasi</th>
-                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Aksi</th>
+                        <th class="px-4 py-2 text-left text-lg font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
+                        <th class="px-4 py-2 text-left text-lg font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nama Aplikasi</th>
+                        <th class="px-4 py-2 text-left text-lg font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                     @foreach($pengajuan as $index => $item)
                     <tr>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $index + 1 }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $item->nama_aplikasi }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">
-                            <a href="{{ route('admin.detail.riwayat', $item->id) }}" class="ml-4 bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-gray-100 py-1 px-3 rounded">Detail</a>
-                        </td>
+                        <td class="px-4 py-2 text-lg text-gray-900 dark:text-gray-300">{{ $index + 1 }}</td>
+                        <td class="px-4 py-2 text-lg text-gray-900 dark:text-gray-300">{{ $item->nama_aplikasi }}</td>
+                        <td class="px-4 py-2 text-lg text-gray-900 dark:text-gray-300">
+                            <a href="{{ route('admin.detail.riwayat', $item->id) }}" class="bg-gray-500 text-white py-2 px-2 rounded">Detail</a>
+                            <a href="{{ route('admin.pengajuan.print', $item->id) }}" class="bg-green-500 text-white py-2 px-2 rounded">Cetak Surat</a>
                     </tr>
                     @endforeach
                 </tbody>

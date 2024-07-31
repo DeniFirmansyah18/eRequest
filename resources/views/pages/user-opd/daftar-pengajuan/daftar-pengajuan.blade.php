@@ -38,7 +38,14 @@
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $loop->iteration }}</td>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $pengajuan->nama_aplikasi }}</td>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $pengajuan->progress }}</td>
-                        <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{{ $pengajuan->status }}</td>
+                        <td class="px-4 py-2 text-base text-gray-900 dark:text-gray-300">
+                            <span class="@if($pengajuan->status == 'Disetujui') inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-base font-medium text-green-700 ring-1 ring-inset ring-green-600/20 @elseif($pengajuan->status == 'Ditolak') 
+                                inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-base font-medium text-red-700 ring-1 ring-inset ring-red-600/10 @elseif($pengajuan->status == 'Selesai') 
+                                inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-base font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10
+                                @else inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-base font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20 @endif">
+                                {{ $pengajuan->status }}
+                            </span>
+                        </td>
                         <td class="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">
                             <div class="flex space-x-2">
                                 <a href="{{ route('user_opd.detailPengajuan', $pengajuan->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">Detail</a>
@@ -48,11 +55,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Hapus</button>
-                                </form>
-                                @elseif($pengajuan->status == 'Selesai')
-                                <a href="{{ route('admin.pengajuan.print', $pengajuan->id) }}" class="bg-green-500 text-white py-2 px-4 rounded">
-                                    Cetak Surat
-                                </a>    
+                                </form>   
                                 @endif
                             </div>
                         </td>

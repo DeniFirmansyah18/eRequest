@@ -34,6 +34,8 @@ class User extends Authenticatable
         'nama_aplikasi',
         'gambaran_umum',
         'jenis_pengguna',
+        'kontak',
+        'narahubung',
         'fitur_fitur',
         'konsep_file',
     ];
