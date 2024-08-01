@@ -7,7 +7,9 @@ use App\Models\Pengajuan;
 use App\Models\User;
 use App\Notifications\PengajuanNotification;
 use App\Notifications\StatusPengajuanNotification;
+use App\Notifications\SendTelegramNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class UserOPDController extends Controller
@@ -110,6 +112,13 @@ class UserOPDController extends Controller
             //foreach ($adminUsers as $admin) {
             //    $admin->notify(new PengajuanNotification('Pengajuan baru (' . $pengajuan->nama_aplikasi . ') telah diajukan oleh ' . Auth::user()->name, $pengajuan->nama_aplikasi));
             //}
+
+            // Kirim notifikasi ke admin via Telegram
+            $message = "Pengajuan baru telah dibuat oleh: " . Auth::user()->name . " dengan nama aplikasi: " . $pengajuan->nama_aplikasi;
+            $user = Auth::user();
+            Log::info('Sending Telegram notification with message: ' . $message);
+            $user->notify(new SendTelegramNotification($message));
+            Log::info('Telegram notification sent successfully.');
 
             return redirect()->route('user_opd.tambahPengajuan')->with('success', 'Pengajuan berhasil disimpan! Silakan menunggu konfirmasi.');
         } catch (\Exception $e) {
