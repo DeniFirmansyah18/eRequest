@@ -3,13 +3,14 @@
     1. Buka gitbash
     2. git clone https://github.com/DeniFirmansyah18/eRequest.git
     3. cd eRequest
-    4. npm install
-    5. npm run dev
-    6. buka xampp
-    7. buka terminal baru didalam folder eRequest
-    8. php artisan migrate
-    9. php artisan db:seed
-    10. php artisan serve
+    4. composer remove laravel-notification-channels/telegram
+    5. composer require laravel-notification-channels/telegram
+    6. npm run dev
+    7. buka xampp
+    8. buka terminal baru didalam folder eRequest
+    9. php artisan migrate
+    10. php artisan db:seed
+    11. php artisan serve
 
 
     
