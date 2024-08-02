@@ -1,0 +1,13 @@
+[2024-08-01 02:10:28] local.INFO: Broadcasting [Illuminate\Notifications\Events\BroadcastNotificationCreated] on channels [private-App.Models.User.2] with payload:
+{
+    "message": "Pengajuan baru telah dibuat oleh: DISNAKER untuk aplikasi: siwakaa",
+    "id": "252a523f-5c40-495d-a2c5-56e7773260c9",
+    "type": "App\\Notifications\\SendTelegramNotification",
+    "socket": null
+}  
+[2024-08-01 02:34:41] local.INFO: Sending Telegram notification with message: Pengajuan baru telah dibuat oleh: DISNAKER untuk aplikasi: plissssssssss  
+[2024-08-01 02:34:43] local.INFO: Telegram notification sent successfully.  
+[2024-08-01 02:37:30] local.INFO: Sending Telegram notification with message: Pengajuan baru telah dibuat oleh: DISNAKER untuk aplikasi: usserr  
+[2024-08-01 02:37:31] local.INFO: Telegram notification sent successfully.  
+[2024-08-01 02:39:36] local.INFO: Sending Telegram notification with message: Pengajuan baru telah dibuat oleh: Trevor Cremin PhD untuk aplikasi: Sipelajar  
+[2024-08-01 02:39:37] local.INFO: Telegram notification sent successfully.  
