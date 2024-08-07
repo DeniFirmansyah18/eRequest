@@ -16,7 +16,7 @@
     1. buka telegram lalu coba chat bot telegram pada link berikut https://t.me/Permohonan_Aplikasi_Bot
 
 
-<img src="https://github.com/user-attachments/assets/8b362f2d-75a5-4c81-841c-9bf657e8d7fe" width="512">
+    <img src="https://github.com/user-attachments/assets/8b362f2d-75a5-4c81-841c-9bf657e8d7fe" width="512">
 
 
 
