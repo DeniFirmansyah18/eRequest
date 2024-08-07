@@ -16,7 +16,7 @@
 
     1. Buka link berikut untuk mendapatkan chat id user yang digunakan untuk menerima notifikasi
 
-    link untuk get id telegram= https://api.telegram.org/bot7359663539:AAHbVxKdXhdrnad6g4Tygol7jl4p1LMvWHk/getUpdates
+link untuk get id telegram= [https://api.telegram.org/bot7359663539:AAHbVxKdXhdrnad6g4Tygol7jl4p1LMvWHk/getUpdates]
 
 <img src="https://github.com/user-attachments/assets/55b89fd0-aa6f-4034-bb4b-9111796b4539" width="512">
 
