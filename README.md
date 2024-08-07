@@ -12,6 +12,12 @@
     10. php artisan db:seed
     11. php artisan serve
 
+    Cara mendapatkan id telegram untuk menerima notifikasi:
+    1. buka telegram lalu coba chat bot telegram pada link berikut https://t.me/Permohonan_Aplikasi_Bot
+    ![Screenshot_6](https://github.com/user-attachments/assets/561f8d6d-5675-460c-9fbf-223d0987d6a5)
+
+    2. 
+
 
     
     Login:
