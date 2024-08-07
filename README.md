@@ -32,10 +32,18 @@
 
     4. Masukkan chat id pada file SendTelegramNotification.php yang terletak sesuai dengan struktur folder dibawah ini. dan isi chat id
     sesuai dengan yang ditandai
-    
-![Screenshot_10](https://github.com/user-attachments/assets/4efa61a3-dab4-41a7-ab91-e87ca10d1653)
 
-<img src="https://github.com/user-attachments/assets/4efa61a3-dab4-41a7-ab91-e87ca10d1653" width="512">
+<img src="https://github.com/user-attachments/assets/4efa61a3-dab4-41a7-ab91-e87ca10d1653" width="812">
+
+    5. Maka konfigurasi notifikasi telegram telah berfungsi, ketika ada pengajuan baru dari OPD akan muncul pada notifikasi telegram sesuai
+    dengan chat id yang dimasukkan.
+
+ ![Screenshot_11](https://github.com/user-attachments/assets/a27f8660-c553-45cb-8e9f-440d4f13f408)
+
+ <img src="https://github.com/user-attachments/assets/a27f8660-c553-45cb-8e9f-440d4f13f408" width="512">
+
+ 
+
 
     
 
