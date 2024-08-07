@@ -17,6 +17,14 @@
 
 <img src="https://github.com/user-attachments/assets/8b362f2d-75a5-4c81-841c-9bf657e8d7fe" width="512">
 
+    2. Masukkan token API Bot Telegram yang sudah ada pada file .env 
+    
+    TELEGRAM_BOT_TOKEN=7359663539:AAHbVxKdXhdrnad6g4Tygol7jl4p1LMvWHk
+
+<img src="[https://github.com/user-attachments/assets/a6db8072-e1dc-4d80-ab15-afb8fe5dd68e" width="512">
+
+    
+
 
 
 
