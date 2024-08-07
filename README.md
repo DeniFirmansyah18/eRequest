@@ -17,23 +17,15 @@
 
 <img src="https://github.com/user-attachments/assets/8b362f2d-75a5-4c81-841c-9bf657e8d7fe" width="512">
 
-    2. Masukkan token API Bot Telegram yang sudah ada pada file .env 
-    
-    TELEGRAM_BOT_TOKEN=7359663539:AAHbVxKdXhdrnad6g4Tygol7jl4p1LMvWHk
+    2. Buka link berikut untuk mendapatkan chat id user yang digunakan untuk menerima notifikasi
 
+    link untuk get id telegram= https://api.telegram.org/bot7359663539:AAHbVxKdXhdrnad6g4Tygol7jl4p1LMvWHk/getUpdates
 
-    
+![Screenshot_8](https://github.com/user-attachments/assets/55b89fd0-aa6f-4034-bb4b-9111796b4539)
 
-<img src="[https://github.com/user-attachments/assets/a6db8072-e1dc-4d80-ab15-afb8fe5dd68e" width="512">
-
-
-
-
+<img src="https://github.com/user-attachments/assets/55b89fd0-aa6f-4034-bb4b-9111796b4539" width="512">
 
     
-
-
-
 
 
 
