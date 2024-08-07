@@ -26,11 +26,18 @@
 <img src="https://github.com/user-attachments/assets/8b362f2d-75a5-4c81-841c-9bf657e8d7fe" width="512"> 
 
     3. jika sudah kembali halaman yang digunakan untuk mendapatkan chat id telegram sebelumnya, pastika response telah diperbarui
-    dan menampilkan detail chat id
-    
-![Screenshot_9](https://github.com/user-attachments/assets/0e84e4a8-0aed-4ab8-96d0-43fa52351f1d)
+    dan menampilkan detail chat id    
 
 <img src="https://github.com/user-attachments/assets/0e84e4a8-0aed-4ab8-96d0-43fa52351f1d" width="512">
+
+    4. Masukkan chat id pada file SendTelegramNotification.php yang terletak sesuai dengan struktur folder dibawah ini. dan isi chat id
+    sesuai dengan yang ditandai
+    
+![Screenshot_10](https://github.com/user-attachments/assets/4efa61a3-dab4-41a7-ab91-e87ca10d1653)
+
+<img src="https://github.com/user-attachments/assets/4efa61a3-dab4-41a7-ab91-e87ca10d1653" width="512">
+
+    
 
     
 
